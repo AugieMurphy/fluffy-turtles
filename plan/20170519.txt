@@ -1,0 +1,36 @@
+plan directory will hold your plans for realizing your goals, with each new draft named for its born day, in the format shown. Each new draft of your plan should address prioritization, workload sharing, and chronology:
+Which jobs are most crucial?
+	Creating a room as the root of our tree. This allows each feature to branch off into new “rooms”, basically we can focus on details of a certain interactive object and then focus focus on a detail of that, etc…
+	It’s also crucial to create VERY SIMPLE graphics because this could get very complicated very fast.
+	The 
+Which components constitute core functionality (vs non-essential)?
+	Room functionality. Inventory. Interaction between items and objects in the room. Non-essential are extensive puzzles, red herrings, and clues.
+Which components are prerequisites for others?
+	The creation of the door that can be unlocked.
+Which tasks can be delegated, and which must be collaboratively tackled?
+What is the timeline, and how does it accommodate setbacks, course changes?
+
+
+UML
+
+MVP: Room with exit, key on floor. Pick up the key, unlock the door.
+
+Next Level: The key is inside of a box or puzzle or in a hidden panel somewhere. Solve the puzzle to get the key. Pick up the key, unlock the door.
+*** The puzzle itself will be decided in class
+
+Next Level(s): Successive layers of puzzles will be added to the room.  
+
+06/06/2017
+Final Project Due
+
+New screens (“rooms”) will be stored in a tree. This is because there no circular movement between rooms, and if there is you will need to go back one and then forward in the tree to get to it. 
+
+Work can be divided as such 
+
+1 person works on rooms and room traversal
+
+1 person works on objects and item interaction
+
+1 person works on puzzles
+
+ IF people complete early, they can help the others
