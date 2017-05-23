@@ -2,9 +2,9 @@ class Player{
   
   /*** VARIABLES ***/
   String _name;
+  ArrayList<Tool> _inventory;
   
-  /*** Constructors ***/
-  
+  /*** CONSTRUCTORS ***/
   Player(){
     _name = "";
   }

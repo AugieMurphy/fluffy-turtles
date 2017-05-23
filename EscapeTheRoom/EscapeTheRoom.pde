@@ -9,9 +9,8 @@ import java.awt.Polygon;
 
 int _screen = 0;
 
-Room _room;
-Player _player;
-Feature<Interactive>[] _features;
+Room _room = new Room();
+Player _player = new Player();
 Polygon[] _polygons = new Polygon[1];
 
 /*** SETUP ***/
@@ -47,7 +46,9 @@ void playingScreen(){
   p.addPoint(250,300);
   p.addPoint(350,300);
   _polygons[0] = p;
+  fill(#D6FFB9);
   quad(250,500,350,500,350,300,250,300);
+  fill(255);
 }
 
 /* Helpers */
@@ -77,8 +78,12 @@ void drawRoof(){
 /*End of GameScreen Helpers*/
 
 void endScreen(){
-    // code for the end of the game, escape (victory) or give up (lose)
-    // code could be text saying "you escaped"
+  // code for the end of the game, escape (victory) or give up (lose)
+  // code could be text saying "you escaped"
+  // code to display the first screen (title + "click to start")
+  background(0);
+  textAlign(CENTER);
+  text("You Escaped!", height/2, width/2);
 }
 
 /*** PLAYER INPUTS ***/
@@ -89,6 +94,7 @@ public void mousePressed(){
   }
   else if( _screen == 1 ){
     // if( the area is a hotspot for an interactive feature ){ examine it }
+    if( IndexOfclickedOnInteractiveFeature() > -1 ){ _screen++; }
     // else{ do nothing } 
   }
   else if( _screen == 2 ){
@@ -105,10 +111,15 @@ void startGame(){
     // code tutorial: display "click on an object to examine it" with the Screen
 }
 
-
+/*** INTERACTIONS ***/
+// Returns the index of the shape of the item that was clicked on
 int IndexOfclickedOnInteractiveFeature(){
   for( int i = 0; i < _polygons.length; i++){
     if(_polygons[i].contains(mouseX,mouseY)){ return i;}
   }
   return -1;
+}
+
+void examine(){
+  
 }
