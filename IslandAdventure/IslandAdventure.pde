@@ -8,10 +8,7 @@ import java.awt.Polygon;
 // 2: End-Game Screen
 
 int _screen = 0;
-
-Room _room = new Room();
-Player _player = new Player();
-Polygon[] _polygons = new Polygon[1];
+ArrayList<Location> _places = new ArrayList<Location>();
 
 /*** SETUP ***/
 void setup(){
@@ -33,49 +30,10 @@ void initScreen(){
   textAlign(CENTER);
   text("Escape The Room \n Click to start", height/2, width/2);
 }
-
 void playingScreen(){
-  //draw walls and floor and roof
-  drawWalls();
-  drawFloor();
-  drawRoof();
-  //display door and other features
-  Polygon p = new Polygon(); //door
-  p.addPoint(250,500);
-  p.addPoint(350,500);
-  p.addPoint(250,300);
-  p.addPoint(350,300);
-  _polygons[0] = p;
-  fill(#D6FFB9);
-  quad(250,500,350,500,350,300,250,300);
-  fill(255);
+  Location _room = new Location();
+  _places.add(_room);
 }
-
-/* Helpers */
-void drawWalls(){
-  background(255);
-  stroke(0);
-  strokeWeight(4);
-  fill(#FFE4E1); 
-  quad(0,600,0,0,100,100,100,500);
-  quad(600,600,600,0,500,100,500,500);   
-  quad(100,100,100,500,500,500,500,100); 
-}
- 
-void drawFloor(){
- stroke(0);
- strokeWeight(4);
- fill(#8B4513);
- quad(0,600,100,500,500,500,600,600);
-}
-
-void drawRoof(){
- stroke(0);
- strokeWeight(4);
- fill(#F0FFFF);
- quad(0,0,100,100,500,100,600,0);
-}
-/*End of GameScreen Helpers*/
 
 void endScreen(){
   // code for the end of the game, escape (victory) or give up (lose)
@@ -114,8 +72,8 @@ void startGame(){
 /*** INTERACTIONS ***/
 // Returns the index of the shape of the item that was clicked on
 int IndexOfclickedOnInteractiveFeature(){
-  for( int i = 0; i < _polygons.length; i++){
-    if(_polygons[i].contains(mouseX,mouseY)){ return i;}
+  for( int i = 0; i < _places.size(); i++){
+    if((_places.get(i)).contains(mouseX,mouseY)){ return i;}
   }
   return -1;
 }
