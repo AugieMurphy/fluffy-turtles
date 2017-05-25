@@ -1,2 +1,24 @@
-﻿05/18/2017
+﻿fluffy-turtles
+APCS2 pd3
+devlog
+2017/05
+
+
+05/18/2017
 Augie and Max: Came up with a plan to develop successive models of the game. Solidified goals for the MVP.
+
+05/20+21/17
+Augie: Created screens for intro, game, and ending. Allowed for basic room functionality. Upon clicking the door, game ends. can be retooled to send you to another room.
+
+Arpita and Max: worked on solidifying the proposal to have more term 2 concepts. We may possibly change our original proposal to have a new idea.
+
+05/23/17
+
+All: More work on solidification of our idea.
+
+05/24/17
+All: final Idea completely soldidified. Game will now become more RPG style with branching pathways and quests. UML, Flowchart, and final proposal created as group effort.
+
+05/25/17 
+
+ 
