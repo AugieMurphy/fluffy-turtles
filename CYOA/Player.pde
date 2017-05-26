@@ -2,19 +2,21 @@ class Player{
   String name;
   ArrayList<Tool> inventory;
   QuestStack quests;
-  storyNode current_node;
+  LLNode<Story> current_node;
   double reputation;
   float xcoor;
   float ycoor;
-  PIMage image;
+  PImage image;
+  boolean isDoingSomething;
   
- Player(String n, node){
+ Player(String n, LLNode<Story> node){
    name = n;
    inventory = new ArrayList<Tool>();
    quests = new QuestStack();
    current_node = node;
    reputation = 50.0;
-   image = 
+   image = loadImage("forwards_0.png");
+   isDoingSomething = false;
  }
  
  String getName(){
@@ -43,9 +45,33 @@ class Player{
    QuestStack.push(quest);
  }
  
- void move(){
-   if(keyPressed()){
-     if(keyCode == UP || key == 'w' || key == 'W')
+ void advanceStory(int pathChosen){
+   if(pathChosen < 0){
+     current_node = current_node.getLeft();
+   }
+   else if(pathChosen > 0){
+     current_node = current_node.getRight();
+   }
  }
  
+ void move(){
+   if(keyPressed && !(isDoingSomething)){
+     if(keyCode == UP || key == 'w' || key == 'W'){
+       ycoor -= 3;
+       image = loadImage("back_0.png");
+     }
+     else if(keyCode == DOWN || key == 's' || key == 'S'){
+       ycoor += 3;
+       image = loadImage("forwards_0.png");
+     }
+     else if(keyCode == RIGHT || key == 'd' || key == 'D'){
+       xcoor += 3;
+       image = loadImage("right_0.png");
+     }
+     else if(keyCode == LEFT || key == 'a' || key == 'A'){
+       xcoor -= 3;
+       image = loadImage("left_0.png");
+     }
+   }
+ }
 }
