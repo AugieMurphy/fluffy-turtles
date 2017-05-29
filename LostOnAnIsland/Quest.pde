@@ -16,6 +16,17 @@ class Quest{
      }
    }
    
+   Quest(int id, String m){
+     ID = id;
+     message = m;
+     complete = false;
+     current = null;
+   }
+   
+   String getMessage(){
+     return message;
+   }
+   
    void setLocation(Location place){
      current = place;
    }

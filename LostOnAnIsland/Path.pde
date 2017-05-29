@@ -14,6 +14,11 @@ class Path{
     _shape = shapeOfEntrance;
   }
   
+  Path(Location pathLeadsTo){
+    _destination = pathLeadsTo;
+    _shape = null;
+  }
+  
   String toString(){
     String pathName = "Path to ";
     // _destination name
@@ -24,13 +29,18 @@ class Path{
     return _shape.contains(x,y);
   }
   
-  void setDestination(){
-    // assigns destination
+  void setDestination(Location place){
+    _destination = place;
+  }
+  
+  void setShape(int[] x, int[] y, int n){
+    _shape = new Polygon(x, y, n);
   }
   
  Location getDestination(){
     // returns destination
-    return null;
+    //return null;
+    return _destination;
   }
   
 }

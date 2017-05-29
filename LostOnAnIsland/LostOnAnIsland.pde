@@ -1,5 +1,6 @@
 // import Polygon
 import java.awt.Polygon;
+Player p;
 
 /*** VARIABLES ***/
 
@@ -8,11 +9,12 @@ import java.awt.Polygon;
 // 1: Location-in-World Screen
 // 2: End-Game Screen
 
-int _screen = 0;
+int _screen = 1;
 WorldMap _map;
 
 void setup(){
   size(600,600);
+  p = new Player("Player");
   _map = new WorldMap();
 }
 
@@ -23,6 +25,8 @@ void draw(){
 }
 
 void mousePressed(){
+  //if(_screen == 1)
+  _screen += 1;
 }
 
 /*** DISPLAY SCREENS ***/
@@ -33,7 +37,25 @@ void launchScreen(){
   text("Escape The Room \n Click to start", height/2, width/2);
 }
 
-void gameScreen(){ _map.showScreen(); }
+void gameScreen(){ 
+  background(0);
+  fill(255, 247, 219);
+  rect(20, 15, 560, 45);
+   //<>//
+  fill(255);
+  rect(20, 560, 560, 30);
+  fill(0, 0, 0);
+  textAlign(CENTER);
+  text("QUEST: " + _map.getQuests().peek().getMessage(), 250, 580);
+  _map.getLocation().display();
+  text(_map.getLocation().getName() + ": " +_map.getLocation().getDescription(), 250, 40);
+  p.move();
+  
+}
+
+void loadCharacter(){
+  image(p.getImage(), 280, 350);
+}
 
 void endScreen(){
   // code for the end of the game (leave the island!!!)

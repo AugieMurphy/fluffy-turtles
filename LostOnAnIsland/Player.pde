@@ -15,8 +15,15 @@ class Player{
    //quests = new QuestStack();
    //current_node = node;
    reputation = 50.0;
-   image = loadImage("forwards_0.png");
+   image = loadImage("player_fwd.png");
    isDoingSomething = false;
+   xcoor = 400;
+   ycoor = 300;
+   //image(image, xcoor, ycoor);
+ }
+ 
+ PImage getImage(){
+   return image;
  }
  
  String getName(){
@@ -58,20 +65,21 @@ class Player{
    if(keyPressed && !(isDoingSomething)){
      if(keyCode == UP || key == 'w' || key == 'W'){
        ycoor -= 3;
-       image = loadImage("back_0.png");
+      // image = loadImage("back_0.png");
      }
      else if(keyCode == DOWN || key == 's' || key == 'S'){
        ycoor += 3;
-       image = loadImage("forwards_0.png");
+      // image = loadImage("forwards_0.png");
      }
      else if(keyCode == RIGHT || key == 'd' || key == 'D'){
        xcoor += 3;
-       image = loadImage("right_0.png");
+      // image = loadImage("right_0.png");
      }
      else if(keyCode == LEFT || key == 'a' || key == 'A'){
        xcoor -= 3;
-       image = loadImage("left_0.png");
+      // image = loadImage("left_0.png");
      }
    }
+   image(image, xcoor, ycoor);
  }
 }
