@@ -4,9 +4,9 @@ class WorldMap{
   
   WorldMap(){
     //Create the different Locations
-    Location l1 = new Location( "Beach-- Crash Site", "You were shipwrecked at this site..." );
-    Location l2 = new Location("Village Entrance", "You've stumbled upon the entrance to a small village..." );
-    Location l3 = new Location("Main Square", "This is the Main Square of the village...");
+    Location l1 = new Location( "Beach-- Crash Site", "You were shipwrecked at this site...",1 );
+    Location l2 = new Location("Village Entrance", "You've stumbled upon the entrance to a small village...",2 );
+    Location l3 = new Location("Main Square", "This is the Main Square of the village...",3);
     
     //Connect the nodes using paths 
     l1.addExit( new Path(l2, sign(550,50)) );
