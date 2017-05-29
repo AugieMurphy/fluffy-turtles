@@ -1,19 +1,19 @@
 class Player{
   String name;
-  ArrayList<Tool> inventory;
-  QuestStack quests;
-  LLNode<Story> current_node;
+  //ArrayList<Tool> inventory;
+  //QuestStack quests;
+  //LLNode<Story> current_node;
   double reputation;
   float xcoor;
   float ycoor;
   PImage image;
   boolean isDoingSomething;
   
- Player(String n, LLNode<Story> node){
+ Player(String n/*, LLNode<Story> node*/){
    name = n;
-   inventory = new ArrayList<Tool>();
-   quests = new QuestStack();
-   current_node = node;
+   //inventory = new ArrayList<Tool>();
+   //quests = new QuestStack();
+   //current_node = node;
    reputation = 50.0;
    image = loadImage("forwards_0.png");
    isDoingSomething = false;
@@ -22,22 +22,22 @@ class Player{
  String getName(){
    return name;
  }
- void use(Tool tool){
+ /*void use(Tool tool){
    tool.triggerEvent();
  }
  
  String addTool(Tool tool){
    inventory.add(tool);
    return tool.getName();
- }
+ }*/
  
  //decBy = amt to decrease reputation by
- int decReputation(int decBy){
+ double decReputation(double decBy){
    reputation -= decBy;
    return reputation;
  }
  
- String[] getQuests(){
+/* String[] getQuests(){
    return _quests.toArray();
  }
  
@@ -52,7 +52,7 @@ class Player{
    else if(pathChosen > 0){
      current_node = current_node.getRight();
    }
- }
+ }*/
  
  void move(){
    if(keyPressed && !(isDoingSomething)){
