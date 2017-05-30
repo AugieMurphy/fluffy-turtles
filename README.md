@@ -15,7 +15,7 @@ The story/scripted events are popped from a stack, as are the QUESTS. In this wa
 
 ## Launch Instructions
 
-1. Copy and Paste this into the command line of the terminal
+1. Run the following command:
 ~~~
 $ git clone git@github.com:AugieMurphy/fluffy-turtles.git
 ~~~
