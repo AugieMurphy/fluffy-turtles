@@ -2,7 +2,7 @@ class Quest{
  String message;
  int ID;
  boolean complete;
- Location current;
+ 
  
  
    //Constructor - contructor must be called with a certain ID in mind.
@@ -27,26 +27,17 @@ class Quest{
      return message;
    }
    
-   void setLocation(Location place){
-     current = place;
-   }
+  
    
-   boolean requirement(Location place){
+   boolean requirement(Location place, Feature<T> thing){
      if(ID == 0){
-       if(current.ID == 0){
+       if(place.ID == 0){
          return true;
        }
-     }
-     else if(current.ID == place.ID){
-       return true;
-     }
+     }     
      return false;
      
    }
    
-   Location getLocation(){
-     /* need some sort of way of getting the current location. wil need some odd
-     crosswork between worldpmap, LOAI, and Quest*/
-     return current; 
-}
+ 
 }
