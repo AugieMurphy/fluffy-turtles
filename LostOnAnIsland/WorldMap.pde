@@ -3,8 +3,10 @@ class WorldMap{
   int _screen = 1;
   Location current;
   LLStack<Quest> QuestStack;
+  Player p;
   
-  WorldMap(){
+  WorldMap(Player player){
+    p = player;
     //Create the different Locations
     Location l1 = new Location( "Beach-- Crash Site", "You were shipwrecked at this site...", 1 );
     //Location l2 = new Location("Village Entrance", "You've stumbled upon the entrance to a small village...",2 );
@@ -53,6 +55,7 @@ class WorldMap{
     }
     if(i > -1){
       setLocation(current._exits.get(i).getDestination());
+      
     }
   }
   

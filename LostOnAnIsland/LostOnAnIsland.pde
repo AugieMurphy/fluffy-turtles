@@ -15,7 +15,7 @@ WorldMap _map;
 void setup(){
   size(600,600);
   p = new Player("Player");
-  _map = new WorldMap();
+  _map = new WorldMap(p);
 }
 
 void draw(){
