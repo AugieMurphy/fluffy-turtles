@@ -3,20 +3,23 @@ class Location{
   Polygon _path;
   String _description;
   ArrayList<Integer> _vertices = new ArrayList<Integer>();
+  PImage image;
   
   Location(){
-    drawWalls();
+    
+    
+   /* drawWalls();
     drawFloor();
     drawRoof();
     createDoor();
-    drawDoor();
+    drawDoor();*/
   }
   
   Location(Polygon p){
-    drawWalls();
+  /*  drawWalls();
     drawFloor();
     drawRoof();
-    _path = p;
+    _path = p;*/
   }
   
   /* Helpers */
