@@ -23,4 +23,20 @@ All: final Idea completely soldified. Game will now become more RPG style with b
 
 General: CYOA is currently being used as a dummy folder for code that is not completed or ready for implenation. Once it is ready for testing, it will be moved to island adventure.
 
- 
+ 05/26/17
+
+Max: Almost completed a non-binary tree system To use for the map of the world.
+
+Arpita: Worked on player and the driver file. 
+
+Augie: Work on Location as well as restructured files to its final system.
+
+05/28/17
+
+Something odd happened where a large amount of the files got erased, so almost all work except for some local copies of very new things remain, as some of us were a few commits behind in our local copies.
+
+As such, we have decided to restructure much of our code and how we are working on it. This fresh start will help immensely as we were very disorgonized and somewhat out of phase before.
+
+Augie: Sent Max Local copies of Location, LostOnIsland, WorldMap, and path to commit as I currently cannot. WorldMap and Path are essentially a linked list system as a map which will allow for traversal instead of a tree.
+
+Max: pushed Augies work. Created Quest and the Stacks with it. Quests will be "hard-coded" with different ID's which change the completion requirements and the quest text. As one quest is completed, the next one will be poped from the stack and become the current quest - once the stack is fully depleted and the current quest becomes null, the game will end. 
