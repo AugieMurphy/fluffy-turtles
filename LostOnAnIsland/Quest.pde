@@ -9,7 +9,7 @@ class Quest{
    
    Quest(int id){
      ID = id;
-     current = null;
+     //current = null;
      if(ID == 0){
        message ="this is a dummy quest. please reboot if you somehow get this error";
        complete = false;
@@ -20,7 +20,7 @@ class Quest{
      ID = id;
      message = m;
      complete = false;
-     current = null;
+     //current = null;
    }
    
    String getMessage(){
@@ -28,7 +28,7 @@ class Quest{
    }
    
   
-   
+   /*
    boolean requirement(Location place, Feature<T> thing){
      if(ID == 0){
        if(place.ID == 0){
@@ -38,6 +38,7 @@ class Quest{
      return false;
      
    }
+   */
    
  
 }

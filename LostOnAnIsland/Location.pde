@@ -45,7 +45,7 @@ class Location{
     //should include some bg characters too
     //but mostly should display the bg
     if(_background != null) {
-     // System.out.println("root");
+     
       image(_background, 20, 65, 560, 480);
     }
     else {
@@ -55,11 +55,6 @@ class Location{
       ellipse(250, 250, 250, 250);
     }
 
-  }
-  
-  void addExit(float xcoor, float ycoor, Location place){
-    Path p = new Path(place, xcoor, ycoor);
-    _exits.add(p);
   }
   
   void addExit(Path p){

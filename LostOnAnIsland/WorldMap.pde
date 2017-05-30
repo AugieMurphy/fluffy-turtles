@@ -3,20 +3,17 @@ class WorldMap{
   int _screen = 1;
   Location current;
   LLStack<Quest> QuestStack;
-  Player p;
   
-  WorldMap(Player player){
-    p = player;
+  WorldMap(){
     //Create the different Locations
     Location l1 = new Location( "Beach-- Crash Site", "You were shipwrecked at this site...", 1 );
-    //Location l2 = new Location("Village Entrance", "You've stumbled upon the entrance to a small village...",2 );
-    //Location l3 = new Location("Main Square", "This is the Main Square of the village...",3);
+    Location l2 = new Location("Village Entrance", "You've stumbled upon the entrance to a small village...",2 );
+    Location l3 = new Location("Main Square", "This is the Main Square of the village...",3);
     
   
     //Connect the nodes using paths 
-    l1.setImage("root.jpg");
-    /*l1.addExit( new Path(l2));
-    l2.addExit(new Path(l1));*/
+    l1.addExit( new Path(l2));
+    l2.addExit(new Path(l1));
     
     QuestStack = new LLStack<Quest>();
     QuestStack.push(new Quest(0, "No quests left"));
@@ -55,16 +52,41 @@ class WorldMap{
     }
     if(i > -1){
       setLocation(current._exits.get(i).getDestination());
-      
     }
+  }
+  
+  void displayL1(){
+    background(#9DC8FF);
+    int[] cors = {50,0,75,50,100,100,300,250,325,350,350,400,400,450,600,525};
+    stroke(0);
+    strokeWeight(4);
+    fill(#FFD27E);
+    beginShape();
+    curveVertex(25,0);
+    for( int i = 0; i < cors.length; i+=2 ){
+      curveVertex(cors[i],cors[i+1]);
+    }
+    curveVertex(600,450);
+    endShape();
+    noStroke();
+    beginShape();
+    vertex(50,0);
+    vertex(600,525);
+    vertex(600,0);
+    endShape();
+  }
+  
+  void displayL2(){
+  }
+  void displayL3(){
   }
   
   void showScreen(){
    // updateLocation();
-    current.display();
-    System.out.println(current.getDescription());
-    /*if( _screen == 1 ){ }
-    else if( _screen == 2 ){ }
-    else if( _screen == 3 ){ }*/
+    //current.display();
+    //System.out.println(current.getDescription());
+    if( _screen == 1 ){ displayL1(); }
+    else if( _screen == 2 ){ displayL2(); }
+    else if( _screen == 3 ){ displayL3(); }
   }
 }

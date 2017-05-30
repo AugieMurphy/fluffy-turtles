@@ -19,11 +19,6 @@ class Path{
     _shape = null;
   }
   
-  Path(Location destination, float xcoor, float ycoor){
-    _destination = destination;
-    makeDoor(xcoor, ycoor);
-  }
-  
   String toString(){
     String pathName = "Path to ";
     // _destination name
@@ -40,14 +35,6 @@ class Path{
   
   void setShape(int[] x, int[] y, int n){
     _shape = new Polygon(x, y, n);
-  }
-  
-  void makeDoor(float xcoor, float ycoor){
-    int[] x = {(int)xcoor, (int) (xcoor + 10)};
-    int[] y = {(int)ycoor, (int) (ycoor + 20)};
-    setShape(x, y, 4);
-    fill((int) Math.random() * 255);
-    rect(xcoor, ycoor, 10, 20);
   }
   
  Location getDestination(){

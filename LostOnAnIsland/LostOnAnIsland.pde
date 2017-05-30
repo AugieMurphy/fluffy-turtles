@@ -15,7 +15,7 @@ WorldMap _map;
 void setup(){
   size(600,600);
   p = new Player("Player");
-  _map = new WorldMap(p);
+  _map = new WorldMap();
 }
 
 void draw(){
@@ -38,6 +38,8 @@ void launchScreen(){
 }
 
 void gameScreen(){ 
+  _map.showScreen();
+  /*
   background(0);
   fill(255, 247, 219);
   rect(20, 15, 560, 45);
@@ -46,11 +48,11 @@ void gameScreen(){
   rect(20, 560, 560, 30);
   fill(0, 0, 0);
   textAlign(CENTER);
+  */
   text("QUEST: " + _map.getQuests().peek().getMessage(), 250, 580);
-  _map.getLocation().display();
+  //_map.getLocation().display();
   text(_map.getLocation().getName() + ": " +_map.getLocation().getDescription(), 250, 40);
   p.move();
-  
 }
 
 void loadCharacter(){
