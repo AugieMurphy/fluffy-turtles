@@ -7,7 +7,8 @@ class Player{
   float xcoor;
   float ycoor;
   PImage image;
-  boolean isDoingSomething;
+  Location location;
+  
   
  Player(String n/*, LLNode<Story> node*/){
    name = n;
@@ -16,7 +17,6 @@ class Player{
    //current_node = node;
    reputation = 50.0;
    image = loadImage("player_fwd.png");
-   isDoingSomething = false;
    xcoor = 400;
    ycoor = 300;
    //image(image, xcoor, ycoor);
@@ -61,8 +61,9 @@ class Player{
    }
  }*/
  
+ 
  void move(){
-   if(keyPressed && !(isDoingSomething)){
+   if(keyPressed){
      if(keyCode == UP || key == 'w' || key == 'W'){
        ycoor -= 3;
       // image = loadImage("back_0.png");
