@@ -25,7 +25,7 @@ void draw(){
 }
 
 void mousePressed(){
-  //if(_screen == 1)
+  if(_screen == 1)
   _screen += 1;
 }
 
@@ -34,27 +34,24 @@ void launchScreen(){
   // code to display the first screen (title + "click to start")
   background(0);
   textAlign(CENTER);
-  text("Escape The Room \n Click to start", height/2, width/2);
+  text("Oh no, you're stranded on a deserted island!\n How will you ever escape? \n Click to start", height/2, width/2);
 }
 
 void gameScreen(){ 
+  //code to display main quest, current location
   background(0);
-  fill(255, 247, 219);
-  rect(20, 15, 560, 45);
-   //<>//
+  fill(255, 247, 219); 
+  rect(20, 15, 560, 45); //makes the background box for the location text //<>//
   fill(255);
-  rect(20, 560, 560, 30);
+  rect(20, 560, 560, 30); //nakes the background box for the quest text
   fill(0, 0, 0);
-  textAlign(CENTER);
-  text("QUEST: " + _map.getQuests().peek().getMessage(), 250, 580);
-  _map.getLocation().display();
+  textAlign(CENTER); // text is displayed now
+  text("QUEST: " + p.peekQuest().getMessage(), 250, 580);
   text(_map.getLocation().getName() + ": " +_map.getLocation().getDescription(), 250, 40);
-  p.move();
+  //_map.getLocation().display();
+   _map.showScreen(); //location/setting is displayed now
+  p.move(); //character is now displayed
   
-}
-
-void loadCharacter(){
-  image(p.getImage(), 280, 350);
 }
 
 void endScreen(){

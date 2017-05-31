@@ -2,33 +2,45 @@ class Quest{
  String message;
  int ID;
  boolean complete;
- 
+ Requirement req;
  
  
    //Constructor - contructor must be called with a certain ID in mind.
    
    Quest(int id){
-     ID = id;
-     current = null;
-     if(ID == 0){
+     ID = id;// Quests wil have identifiers so that it will internally know how to be solved
+     //or maybe not
+     if(ID == 0){//each individual quest will have its own text and completion requirement
        message ="this is a dummy quest. please reboot if you somehow get this error";
        complete = false;
      }
    }
    
-   Quest(int id, String m){
+   Quest(int id, String m){//Questc can be made wit ha certain ID and message in mind
      ID = id;
      message = m;
      complete = false;
-     current = null;
+     //current = null;
+   }
+   
+   Quest(int id, String m, Requirement r){
+     ID = id;
+     message = m;
+     complete = false;
+     req = r;
    }
    
    String getMessage(){
      return message;
    }
    
-  
+   Requirement getReq(){
+     return req;
+   }
    
+  //Needs to be fleshed out. All quests will have a competion requirement settled by their ID's.
+  //MAYBE they don't need ID's
+   /*
    boolean requirement(Location place, Feature<T> thing){
      if(ID == 0){
        if(place.ID == 0){
@@ -38,6 +50,7 @@ class Quest{
      return false;
      
    }
+   */
    
  
 }
