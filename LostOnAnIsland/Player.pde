@@ -4,10 +4,9 @@ class Player{
   //QuestStack quests;
   //LLNode<Story> current_node;
   double reputation;
-  float xcoor;
-  float ycoor;
+  float xcoor; //keep track of location in case it gets to a path
+  float ycoor; //keep track of location
   PImage image;
-  boolean isDoingSomething;
   
  Player(String n/*, LLNode<Story> node*/){
    name = n;
@@ -16,12 +15,20 @@ class Player{
    //current_node = node;
    reputation = 50.0;
    image = loadImage("player_fwd.png");
-   isDoingSomething = false;
    xcoor = 400;
    ycoor = 300;
-   //image(image, xcoor, ycoor);
  }
  
+ int getX(){
+   System.out.println("X: " + xcoor);
+   return (int) xcoor;
+ }
+ 
+ int getY(){
+   System.out.println("Y: " + ycoor);
+   return (int) ycoor;
+ }
+ //returns player sprite
  PImage getImage(){
    return image;
  }
@@ -29,6 +36,8 @@ class Player{
  String getName(){
    return name;
  }
+ 
+ //methods not implemented yet because we may not be using them yet
  /*void use(Tool tool){
    tool.triggerEvent();
  }
@@ -61,25 +70,39 @@ class Player{
    }
  }*/
  
+ //user can move around the player instead of just pointing and clicking
+ //problem is, user must press a new key in order to stop its movement
  void move(){
-   if(keyPressed && !(isDoingSomething)){
+   if(keyPressed){
      if(keyCode == UP || key == 'w' || key == 'W'){
        ycoor -= 3;
-      // image = loadImage("back_0.png");
      }
      else if(keyCode == DOWN || key == 's' || key == 'S'){
        ycoor += 3;
-      // image = loadImage("forwards_0.png");
+      
      }
      else if(keyCode == RIGHT || key == 'd' || key == 'D'){
        xcoor += 3;
-      // image = loadImage("right_0.png");
+      
      }
      else if(keyCode == LEFT || key == 'a' || key == 'A'){
        xcoor -= 3;
-      // image = loadImage("left_0.png");
+      
      }
    }
-   image(image, xcoor, ycoor);
+   image(image, xcoor, ycoor); //display updated character's location
+ }
+ 
+ //move the player w/o user's control
+ void move(float coor, String direction){
+   if(direction.equals("x"))
+       xcoor += coor;
+   else if(direction.equals("-x")) 
+     xcoor -= coor;
+   else if(direction.equals("y")) 
+     ycoor += coor;
+   else if(direction.equals("-y")) 
+     ycoor -= coor;
+   image(image, xcoor, ycoor, 40, 50); //display updated character's location
  }
 }

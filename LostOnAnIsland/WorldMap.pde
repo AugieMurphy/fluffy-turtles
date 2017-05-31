@@ -3,17 +3,23 @@ class WorldMap{
   int _screen = 1;
   Location current;
   LLStack<Quest> QuestStack;
+  boolean gameOver = false;
+  Player p; //mainly to keep track of player's place && update location
   
-  WorldMap(){
+  WorldMap(Player player){
+    p = player;
     //Create the different Locations
     Location l1 = new Location( "Beach-- Crash Site", "You were shipwrecked at this site...", 1 );
     Location l2 = new Location("Village Entrance", "You've stumbled upon the entrance to a small village...",2 );
     Location l3 = new Location("Main Square", "This is the Main Square of the village...",3);
     
+    l1.setImage("shore.jpg");
+    l2.setImage("village.jpg");
+    l3.setImage("store.jpg");
   
     //Connect the nodes using paths 
-    l1.addExit( new Path(l2));
-    l2.addExit(new Path(l1));
+    l1.addExit( new Path(l2, 250, 230, "door"));
+    l2.addExit(new Path(l1, 230, 350, "hole"));
     
     QuestStack = new LLStack<Quest>();
     QuestStack.push(new Quest(0, "No quests left"));
@@ -39,22 +45,26 @@ class WorldMap{
     return current;
   }
   
-  void doSomething(){
-    System.out.println("do something");
-  }
   
+  //checks if player and mouse clicks a path to a new location and updates current location to that location
   void updateLocation(){
     int i = -1;
     for(int x = 0; x < current._exits.size(); x++){
-      if(current._exits.get(x).contains(mouseX, mouseY)){
+      if(current._exits.get(x).contains(mouseX, mouseY) && mousePressed)
+      /*&&  
+      ((current._exits.get(x).contains((int)(p.getX() + 30), (int)(p.getY() + 30))) || (current._exits.get(x).contains((int)(p.getX() - 30), (int)(p.getY() - 30))))*/
+      {
+        //System.out.println("true door");
         i = x;
       }
     }
     if(i > -1){
+      //System.out.println("new door");
       setLocation(current._exits.get(i).getDestination());
     }
   }
   
+  //in case the image-loading takes forever, this is an alternative -- just drawing everything out manually
   void displayL1(){
     background(#9DC8FF);
     int[] cors = {50,0,75,50,100,100,300,250,325,350,350,400,400,450,600,525};
@@ -82,11 +92,11 @@ class WorldMap{
   }
   
   void showScreen(){
-   // updateLocation();
-    //current.display();
+    updateLocation();
+    current.display();
     //System.out.println(current.getDescription());
-    if( _screen == 1 ){ displayL1(); }
-    else if( _screen == 2 ){ displayL2(); }
-    else if( _screen == 3 ){ displayL3(); }
+    if( _screen == 1 ){ }//displayL1(); }
+    else if( _screen == 2 ){ }//displayL2(); }
+    else if( _screen == 3 ){ }//displayL3(); }
   }
 }

@@ -3,7 +3,7 @@ class Location{
   /*** VARIABLES ***/
   String _name;
   String _description;
-  public ArrayList<Path> _exits; //we could use a linked list here
+  public ArrayList<Path> _exits; //basically makes a linked list because each location links to others
   PImage _background;
   int ID;
   
@@ -42,12 +42,16 @@ class Location{
   }
   
   void display(){
-    //should include some bg characters too
-    //but mostly should display the bg
+    //should display the bg
     if(_background != null) {
-     
       image(_background, 20, 65, 560, 480);
+      //displays the path to a new location
+      for(int i = 0; i < _exits.size(); i++){
+        _exits.get(i).displayShape();
+      }
     }
+    
+    //just displays/draws an island as default image if there is no location
     else {
       fill(0, 216, 242);
       rect(20, 60, 560, 480);
