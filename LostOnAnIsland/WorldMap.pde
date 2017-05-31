@@ -2,7 +2,7 @@ class WorldMap{
   
   int _screen = 1;
   Location current;
-  LLStack<Quest> QuestStack;
+  LLStack<Quest> QuestStack; //might not need this
   boolean gameOver = false;
   Player p; //mainly to keep track of player's place && update location
   
@@ -21,10 +21,9 @@ class WorldMap{
     l1.addExit( new Path(l2, 250, 230, "door"));
     l2.addExit(new Path(l1, 230, 350, "hole"));
     
-    QuestStack = new LLStack<Quest>();
-    QuestStack.push(new Quest(0, "No quests left"));
-    QuestStack.push(new Quest(1, "Get to Village"));
-    QuestStack.push(new Quest(2, "Get to Square"));
+    p.addQuest((new Quest(0, "No quests left")));
+    p.addQuest((new Quest(2, "Get to Square")));
+    p.addQuest((new Quest(1, "Get to Village", l2)));
     current = l1;
     //System.out.println(current.getDescription());
   }
@@ -93,6 +92,9 @@ class WorldMap{
   
   void showScreen(){
     updateLocation();
+    p.setLocation(current);
+    p.popQuest();
+    System.out.println(p.peekQuest().getMessage());
     current.display();
     //System.out.println(current.getDescription());
     if( _screen == 1 ){ }//displayL1(); }

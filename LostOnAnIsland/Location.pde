@@ -1,4 +1,4 @@
-class Location{
+class Location extends Requirement{
   
   /*** VARIABLES ***/
   String _name;
@@ -60,6 +60,7 @@ class Location{
     }
 
   }
+  
   
   void addExit(Path p){
     _exits.add(p);

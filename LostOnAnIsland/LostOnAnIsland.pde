@@ -46,12 +46,12 @@ void gameScreen(){
   rect(20, 560, 560, 30); //nakes the background box for the quest text
   fill(0, 0, 0);
   textAlign(CENTER); // text is displayed now
-  text("QUEST: " + _map.getQuests().peek().getMessage(), 250, 580);
+  text("QUEST: " + p.peekQuest().getMessage(), 250, 580);
   text(_map.getLocation().getName() + ": " +_map.getLocation().getDescription(), 250, 40);
-  
   //_map.getLocation().display();
    _map.showScreen(); //location/setting is displayed now
   p.move(); //character is now displayed
+  
 }
 
 void endScreen(){

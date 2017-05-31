@@ -1,4 +1,4 @@
-﻿fluffy-turtles
+fluffy-turtles
 APCS2 pd3
 devlog
 2017/05
@@ -22,5 +22,6 @@ All: final Idea completely soldified. Game will now become more RPG style with b
 05/25/17 
 
 General: CYOA is currently being used as a dummy folder for code that is not completed or ready for implenation. Once it is ready for testing, it will be moved to island adventure.
+
 
  
