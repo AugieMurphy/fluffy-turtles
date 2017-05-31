@@ -1,0 +1,25 @@
+﻿Step 1: Movement between locations
+Step 2: Quest completion upon going to new location
+Step 3: implementing other characters
+Step 4: Quest completion upon talking to other character
+Step 5: Having multiple quests
+Step 6: Side quests that are pushed onto the stack
+Step 7: Branching story path, if possible. If not, add everything else to make is of substance.
+
+
+
+
+
+
+* Which jobs are most crucial?
+        Making sure that both quests and the world work. Without either of these working, the game will not even be playable.
+        On this note, graphics must be kept simple.
+* Which components constitute core functionality (vs non-essential)?
+        Core functionality: Locations, Quest, and interaction between player and other things.
+Non-essential: good graphics and shapes
+* Which components are prerequisites for others?
+        The quest must work for the quest stack to work, and vice versa. Location must work for path to work and for WorldMap to work.
+* Which tasks can be delegated, and which must be collaboratively tackled?
+At this rate, most of the work can be independently tackled So long as we all know what the other is working on and catch up every now and again.
+* What is the timeline, and how does it accommodate setbacks, course changes?
+At this rate, it should be all working in due time - we plan to have everything up to step 4 working by friday.
