@@ -87,26 +87,28 @@ class Player{
  
  //user can move around the player instead of just pointing and clicking
  //problem is, user must press a new key in order to stop its movement
- void move(){
-   if(keyPressed){
-     if(keyCode == UP || key == 'w' || key == 'W'){
-       ycoor -= 3;
+ //b is if key is pressed
+ void move(boolean b){
+   //display updated character's location
+    if(b){
+    if(keyCode == UP || key == 'w' || key == 'W'){
+       ycoor -= 5;
      }
      else if(keyCode == DOWN || key == 's' || key == 'S'){
-       ycoor += 3;
+       ycoor += 5;
       
      }
      else if(keyCode == RIGHT || key == 'd' || key == 'D'){
-       xcoor += 3;
+       xcoor += 5;
       
      }
      else if(keyCode == LEFT || key == 'a' || key == 'A'){
-       xcoor -= 3;
-      
+       xcoor -= 5;
      }
-   }
-   image(image, xcoor, ycoor); //display updated character's location
+    }
+    image(image, xcoor, ycoor, 40, 50); 
  }
+ 
  
  //move the player w/o user's control
  void move(float coor, String direction){

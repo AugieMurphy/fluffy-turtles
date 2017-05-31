@@ -54,6 +54,15 @@ class Path{
     return _shape.contains(x,y);}
   }
   
+  boolean contains(int x, int y, int radius){
+    if(_shape != null){
+      if(_shape.contains(x + 20, y + 25)) {
+        return true;
+      }
+    }
+      return false;
+  }
+  
   void setDestination(Location place){
     _destination = place;
   }

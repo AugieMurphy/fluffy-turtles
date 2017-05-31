@@ -50,8 +50,12 @@ void gameScreen(){
   text(_map.getLocation().getName() + ": " +_map.getLocation().getDescription(), 250, 40);
   //_map.getLocation().display();
    _map.showScreen(); //location/setting is displayed now
-  p.move(); //character is now displayed
+  p.move(false); //character is now displayed
   
+}
+
+void keyPressed(){
+  p.move(true);
 }
 
 void endScreen(){

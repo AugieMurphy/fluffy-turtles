@@ -49,9 +49,9 @@ class WorldMap{
   void updateLocation(){
     int i = -1;
     for(int x = 0; x < current._exits.size(); x++){
+      if(current._exits.get(x).contains(p.getX(), p.getY(), -5)) System.out.println("yea");
+       System.out.println(mouseX + "," + mouseY);
       if(current._exits.get(x).contains(mouseX, mouseY) && mousePressed)
-      /*&&  
-      ((current._exits.get(x).contains((int)(p.getX() + 30), (int)(p.getY() + 30))) || (current._exits.get(x).contains((int)(p.getX() - 30), (int)(p.getY() - 30))))*/
       {
         //System.out.println("true door");
         i = x;
@@ -94,7 +94,7 @@ class WorldMap{
     updateLocation();
     p.setLocation(current);
     p.popQuest();
-    System.out.println(p.peekQuest().getMessage());
+    //System.out.println(p.peekQuest().getMessage());
     current.display();
     //System.out.println(current.getDescription());
     if( _screen == 1 ){ }//displayL1(); }

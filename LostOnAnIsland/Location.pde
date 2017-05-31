@@ -1,4 +1,4 @@
-class Location extends Requirement{
+class Location implements Requirement{
   
   /*** VARIABLES ***/
   String _name;
