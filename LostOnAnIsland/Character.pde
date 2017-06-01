@@ -7,8 +7,8 @@ class Character{
   
   String talk(){
     return messages[0];
-    if state == 1; state =0;
-    else state =1;
+    //if state == 1; state =0;
+    //else state =1;
     
   }
   Quest giveQ(){

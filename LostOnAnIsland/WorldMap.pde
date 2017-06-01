@@ -20,9 +20,11 @@ class WorldMap{
     //Connect the nodes using paths 
     l1.addExit( new Path(l2, 250, 230, "door"));
     l2.addExit(new Path(l1, 230, 350, "hole"));
+    l2.addExit(new Path(l3, 400, 200, "door"));
+    l3.addExit(new Path(l1, 200, 360, "hole"));
     
     p.addQuest((new Quest(0, "No quests left")));
-    p.addQuest((new Quest(2, "Get to Square")));
+    p.addQuest((new Quest(2, "Get to Square", l3)));
     p.addQuest((new Quest(1, "Get to Village", l2)));
     current = l1;
     //System.out.println(current.getDescription());
@@ -49,11 +51,8 @@ class WorldMap{
   void updateLocation(){
     int i = -1;
     for(int x = 0; x < current._exits.size(); x++){
-      if(current._exits.get(x).contains(p.getX(), p.getY(), -5)) System.out.println("yea");
-       System.out.println(mouseX + "," + mouseY);
-      if(current._exits.get(x).contains(mouseX, mouseY) && mousePressed)
+      if((current._exits.get(x).contains(mouseX, mouseY) && mousePressed ) || (current._exits.get(x).contains(p.getX() + 20, p.getY() + 25)))
       {
-        //System.out.println("true door");
         i = x;
       }
     }

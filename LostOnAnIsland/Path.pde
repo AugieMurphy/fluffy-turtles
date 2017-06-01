@@ -11,6 +11,7 @@ class Path{
   Shape _shape; //Shape has a contains() method which makes boundaries and can be used to check if mouse or player is touching it
   float xcoor; //coordinates of the path on the screen
   float ycoor;
+  color c;
   
   Path(){
     _destination = null;

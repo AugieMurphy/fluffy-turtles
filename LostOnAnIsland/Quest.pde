@@ -38,19 +38,5 @@ class Quest{
      return req;
    }
    
-  //Needs to be fleshed out. All quests will have a competion requirement settled by their ID's.
-  //MAYBE they don't need ID's
-   /*
-   boolean requirement(Location place, Feature<T> thing){
-     if(ID == 0){
-       if(place.ID == 0){
-         return true;
-       }
-     }     
-     return false;
-     
-   }
-   */
-   
  
 }
