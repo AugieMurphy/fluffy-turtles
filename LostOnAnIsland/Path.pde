@@ -91,6 +91,7 @@ class Path{
   
   
   void displayShape(){
+    stroke(0);
     fill(245, 0, 155); //sets it bright pink so it will get noticed
     //checks if it's a door or hole
     if(_shape instanceof Polygon){

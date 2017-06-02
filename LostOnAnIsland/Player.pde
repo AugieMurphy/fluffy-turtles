@@ -1,6 +1,6 @@
 class Player{
   String name;
-  //ArrayList<Tool> inventory;
+  Inventory _inventory;
   LLStack<Quest> quests;
   //LLNode<Story> current_node;
   double reputation;
@@ -18,6 +18,7 @@ class Player{
    image = loadImage("player_fwd.png");
    xcoor = 400;
    ycoor = 300;
+   _inventory = new Inventory();
    
  }
  
@@ -47,11 +48,12 @@ class Player{
  /*void use(Tool tool){
    tool.triggerEvent();
  }
+ */
  
- String addTool(Tool tool){
-   inventory.add(tool);
-   return tool.getName();
- }*/
+ void addTool(Tool tool, Location l){
+   _inventory.collect(tool,l);
+   //return tool.getName();
+ }
  
  //decBy = amt to decrease reputation by
  double decReputation(double decBy){
@@ -122,4 +124,9 @@ class Player{
      ycoor -= coor;
    image(image, xcoor, ycoor, 40, 50); //display updated character's location
  }
+ 
+ public void showInventory(){
+   _inventory.display();
+ }
+ 
 }

@@ -1,8 +1,11 @@
 // import Polygon
 import java.awt.Polygon;
-Player p;
 
 /*** VARIABLES ***/
+Player p;
+LLStack<String> _messages;
+String currMessage;
+boolean messaging;
 
 // We display the screen that is indicated by the _screen variable.
 // 0: Initial Screen/Backstory
@@ -16,6 +19,10 @@ void setup(){
   size(600,600);
   p = new Player("Player");
   _map = new WorldMap(p);
+  _messages = new LLStack<String>();
+  addMessage("<-- This is your inventory. \n Click on tools and they will be added to it.");
+  currMessage = _messages.peek();
+  messaging = false;
 }
 
 void draw(){
@@ -25,16 +32,28 @@ void draw(){
 }
 
 void mousePressed(){
-  if(_screen == 1)
-  _screen += 1;
+ if(_screen == 1){_screen += 1; }
+  else if( _screen == 2 ){ 
+    switchMessage();
+    _map.pressMouse(); 
+  }
 }
 
 /*** DISPLAY SCREENS ***/
 void launchScreen(){
   // code to display the first screen (title + "click to start")
-  background(0);
+  background(#1A341A);
+  fill(255);
   textAlign(CENTER);
-  text("Oh no, you're stranded on a deserted island!\n How will you ever escape? \n Click to start", height/2, width/2);
+  //textSize(25);
+  text("Oh no, you're stranded on a deserted island! \n How will you ever escape? \n Click to start", height/2, width/2);
+}
+
+public void switchMessage(){
+    if( messaging && _messages.isEmpty() ){ messaging = !messaging;}
+    else if( !messaging && _messages.isEmpty() ){ currMessage = _messages.pop(); }
+    else if( messaging ){ currMessage = _messages.pop(); }
+    else{ messaging = true; }
 }
 
 void gameScreen(){ 
@@ -51,6 +70,7 @@ void gameScreen(){
   //_map.getLocation().display();
    _map.showScreen(); //location/setting is displayed now
   p.move(false); //character is now displayed
+  if( messaging ){ displayMessage(); }
   
 }
 
@@ -63,4 +83,19 @@ void endScreen(){
   background(0);
   textAlign(CENTER);
   text("You've escaped from the island!!!", height/2, width/2);
+}
+
+
+public void addMessage(String s){
+  _messages.push(s);
+  currMessage = s;
+}
+
+public void displayMessage(){
+  stroke(#FFAF79);
+  fill(#FFC4C4);
+  rect(100,275,400,50);
+  textAlign(CENTER);
+  fill(#FA0000);
+  text(currMessage,300,295);
 }
