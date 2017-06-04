@@ -16,8 +16,8 @@ class Player{
    //current_node = node;
    reputation = 50.0;
    image = loadImage("player_fwd.png");
-   xcoor = 400;
-   ycoor = 300;
+   xcoor = 425;
+   ycoor = 475;
    _inventory = new Inventory();
    
  }
@@ -135,8 +135,12 @@ class Player{
    image(image, xcoor, ycoor, 40, 50); //display updated character's location
  }
  
- public void showInventory(){
+ void showInventory(){
    _inventory.display();
+ }
+ 
+ void sideBar(){
+   _inventory.sideBar();
  }
  
 }

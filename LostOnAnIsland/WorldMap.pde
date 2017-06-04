@@ -28,6 +28,11 @@ class WorldMap{
     l2.setImage("village.jpg");
     l3.setImage("store.jpg");
   
+  
+    //add characters
+    l0.addIslander(leader);
+    
+    
     //Connect the nodes using paths 
     
     
@@ -104,8 +109,7 @@ class WorldMap{
   
   public void setupl0(){
     size(600,600);
-    leader = new Islander(525,75,"Leader", loadImage("PrincessPeach_fwd.png"));
-    leader.addCrown();
+    leader = new Islander(500,450,"Leader", "PrincessPeach_fwd.png",40,76);
     leader.addSpeech("BUT, maybe I can help you... \n complete these quests and \n then  come find me. \n I'll get you off of this island.");
     leader.addSpeech("I hope you have another boat. \n Nobody's left this island in years.");
     leader.addSpeech("Were you in a shipwreck \n during the storm \n last night?");
@@ -121,6 +125,7 @@ class WorldMap{
     leader.display();
     current.displayTools();
     current.showExits();
+    p.sideBar();
   }
   
   public void pressMouse(){

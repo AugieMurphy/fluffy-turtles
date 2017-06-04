@@ -28,8 +28,19 @@ class Inventory{
     return _inventory.size();
   }
   
+  void sideBar(){
+  stroke(0);
+    fill(#C6C6C6);
+    for(int i = 0; i < _inventory.size(); i++ ){
+      rect(0,60*i,50,60);
+      if( (_inventory.get(i)) != null ){
+      (_inventory.get(i)).display(10,i*10);
+      }
+    }
+  }
+  
   public void display(){
-    /***
+    /**
     stroke(0);
     fill(#C6C6C6);
     for(int i = 0; i < _inventory.length; i++ ){
@@ -41,7 +52,8 @@ class Inventory{
     }
     translate(0,-600);
   }
-  ***/
+  **/
+  
     background(#E1E7EA);
     stroke(#0A075D);
     fill(#BCDAFF);
@@ -49,6 +61,7 @@ class Inventory{
       if( i > 25 ){ /* idk, tell them they can't carry that much or make another page*/ }
       else if( _inventory.get(i) != null ){
         (_inventory.get(i)).display((i%5)*12+6,(i/5)*10+6);
+        fill(0);
         text( (_inventory.get(i)).getName(), (i%5)*12+6, (i/5)*10+12);
       }
     }

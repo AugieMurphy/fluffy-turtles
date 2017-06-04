@@ -138,4 +138,10 @@ class Location implements Requirement{
   void removeIslander(Islander i){
     _villagers.remove(i);
   }
+  
+  void showIslanders(){
+    for( Islander i: _villagers ){
+      i.display();
+    }
+  }
 }
