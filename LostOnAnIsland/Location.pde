@@ -82,6 +82,7 @@ class Location implements Requirement{
     **/
     showExits();
     displayTools();
+    showIslanders();
   }
     
   void showExits(){

@@ -59,7 +59,7 @@ class WorldMap{
     p.addQuest((new Quest(1, "Get to Village", l2)));
     //System.out.println(current.getDescription());
     
-    _MAP = new Tool("Map",100,100,"messageInABottle.png",13,33);
+    _MAP = new Tool("Map",300,500,"messageInABottle.png",13,33);
     l0.addTool(_MAP);
     //System.out.println(current.getDescription());
   }
@@ -122,7 +122,7 @@ class WorldMap{
     updateLocation();
     p.popQuest();
     current.display();
-    leader.display();
+    //leader.display();
     current.displayTools();
     current.showExits();
     p.sideBar();
