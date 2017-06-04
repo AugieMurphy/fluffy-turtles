@@ -69,6 +69,10 @@ void mousePressed(){
   
 }
 
+void keyPressed(){
+  p.move(true);
+}
+
 /*** DISPLAY SCREENS ***/
 // USER INPUT HELPERS
 boolean isInventory(){
@@ -106,7 +110,6 @@ void launchScreen(){
   background(#1A341A);
   fill(255);
   textAlign(CENTER);
-  //textSize(25);
   text("Oh no, you're stranded on a deserted island! \n How will you ever escape? \n Click to start", height/2, width/2);
 }
 
@@ -128,9 +131,8 @@ void gameScreen(){
   _map.showScreen(); //location/setting is displayed now
   
   fill(255);
-  rect(550,0,50,50);
-  rect(0,550,50,50);
-  rect(0,0,50,50);
+  rect(0,550,50,50,10,10,10,10);
+  rect(0,0,50,50,10,10,10,10);
   fill(0);
   text("inventory",25,575);
   text("menu",25,25);
@@ -209,15 +211,12 @@ void readInstructions(){
 /*****/
 public void switchMessage(){
     if( messaging && _messages.isEmpty() ){ messaging = !messaging;}
-    else if( !messaging && _messages.isEmpty() ){ currMessage = _messages.pop(); }
+    else if( !messaging && _messages.isEmpty() ){ messaging = messaging; }
     else if( messaging ){ currMessage = _messages.pop(); }
+    else if( messaging ){ _messages.pop(); }
     else{ messaging = true; }
 }
  //<>//
-void keyPressed(){
-  p.move(true);
-}
-
 public void addMessage(String s){
   _messages.push(s);
   currMessage = s;

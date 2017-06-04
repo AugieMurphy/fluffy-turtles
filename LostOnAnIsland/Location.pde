@@ -3,12 +3,13 @@ class Location implements Requirement{
   /*** VARIABLES ***/
   String _name;
   String _description;
-  public ArrayList<Path> _exits; //basically makes a linked list because each location links to others
+  ArrayList<Path> _exits; //basically makes a linked list because each location links to others
   PImage _background;
   int ID;
   ArrayList<Tool> _tools;
   Location _currLocation;
   Features _features;
+  ArrayList<Islander> _villagers;
   
   Location(){
     _name = "";
@@ -18,6 +19,7 @@ class Location implements Requirement{
     _tools = new ArrayList<Tool>();
     _currLocation = null;
     _features = new Features();
+    _villagers = new ArrayList<Islander>();
   }
   
   Location(String title, String moreInfo,int id){
@@ -29,6 +31,7 @@ class Location implements Requirement{
     _tools = new ArrayList<Tool>();
     _currLocation = null;
     _features = new Features();
+    _villagers = new ArrayList<Islander>();
   }
   
   Location(String title, String moreInfo, PImage scenery, int id){
@@ -40,6 +43,7 @@ class Location implements Requirement{
     _tools = new ArrayList<Tool>();
     _currLocation = null;
     _features = new Features();
+    _villagers = new ArrayList<Islander>();
   }
   
   String getDescription(){
@@ -56,8 +60,6 @@ class Location implements Requirement{
   
   void display(){
     
-    //updateLocation(); //if the user is clicking on an exit, go to that destination
-    
     /*** should display the background ***/
     
     // if there's a background image, display it
@@ -69,7 +71,7 @@ class Location implements Requirement{
     else if( _features != null ){
       _features.display();
     }
-    
+    /**
     //just displays/draws an island as default image if there is no location
     else {
       fill(0, 216, 242);
@@ -77,7 +79,7 @@ class Location implements Requirement{
       fill(250, 241, 222);
       ellipse(250, 250, 250, 250);
     }
-    
+    **/
     //displays the path to a new location
     showExits();
     
@@ -129,4 +131,11 @@ class Location implements Requirement{
     _features.add(p, fillColor, transparency);
   }
   
+  void addIslander(Islander i){
+    _villagers.add(i);
+  }
+  
+  void removeIslander(Islander i){
+    _villagers.remove(i);
+  }
 }

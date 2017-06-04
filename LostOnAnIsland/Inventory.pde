@@ -20,6 +20,14 @@ class Inventory{
       }
   }
   
+  Tool get(int i){
+    return _inventory.get(i);
+  }
+  
+  int size(){
+    return _inventory.size();
+  }
+  
   public void display(){
     /***
     stroke(0);
@@ -41,7 +49,7 @@ class Inventory{
       if( i > 25 ){ /* idk, tell them they can't carry that much or make another page*/ }
       else if( _inventory.get(i) != null ){
         (_inventory.get(i)).display((i%5)*12+6,(i/5)*10+6);
-        rect((i%5)*12,(i/5)*12,10,10,10,10,10,10);
+        text( (_inventory.get(i)).getName(), (i%5)*12+6, (i/5)*10+12);
       }
     }
   }

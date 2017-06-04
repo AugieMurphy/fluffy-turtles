@@ -50,8 +50,18 @@ class Player{
  }
  */
  
+ boolean hasTool( Tool _tool ){
+   for( int i = 0; i < _inventory.size(); i++ ){
+     if( _inventory.get(i) == _tool ){ return true; }
+   }
+   return false;
+ }
+ 
  void addTool(Tool tool, Location l){
-   _inventory.collect(tool,l);
+   
+     _inventory.collect(tool,l);
+     _messages.push("You've found a new tool: \n" + tool.getName() + " \n has been added to your inventory!!!");
+   
    //return tool.getName();
  }
  

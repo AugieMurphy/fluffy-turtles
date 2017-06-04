@@ -6,6 +6,9 @@ class Tool{
   int xcoor;
   int ycoor;
   
+  int newWidth;
+  int newHeight;
+  
   Tool(){
     _tool = null;
     xcoor = 100;
@@ -13,22 +16,25 @@ class Tool{
     _name = "";
   }
   
-  Tool(String toolName, int x, int y, String fileName){
+  Tool(String toolName, int x, int y, String fileName, int WIDTH, int HEIGHT){
     _tool = loadImage(fileName);
     xcoor = x;
     ycoor = y;
     _name = toolName;
+    newWidth = WIDTH;
+    newHeight = HEIGHT;
   }
+
   
   public void display(){
     if( _tool == null){ }
-    else{ image(_tool,xcoor,ycoor); }
+    else{ image(_tool,xcoor,ycoor,newWidth,newHeight); }
   }
   
   public void display(int x, int y){
     if( _tool == null){ }
     else{
-      image(_tool,x,y);
+      image(_tool,x,y,newWidth,newHeight);
     }
   }
   
@@ -51,4 +57,9 @@ class Tool{
     // if it's not in the inventory, pick it up.
     // if it's in the inventory, highlight the box
   }
+  
+  String getName(){
+    return _name;
+  }
+  
 }

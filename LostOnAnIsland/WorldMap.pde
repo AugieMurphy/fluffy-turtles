@@ -6,6 +6,7 @@ class WorldMap{
   boolean gameOver = false;
   Player p; //mainly to keep track of player's place && update location
   Islander leader;
+  Tool _MAP;
   
   WorldMap(Player player){
     
@@ -53,7 +54,8 @@ class WorldMap{
     p.addQuest((new Quest(1, "Get to Village", l2)));
     //System.out.println(current.getDescription());
     
-    //l0.addTool(new Tool(100,100));
+    _MAP = new Tool("Map in a Bottle",100,100,"messageInABottle.png",13,33);
+    l0.addTool(_MAP);
     //System.out.println(current.getDescription());
   }
   
