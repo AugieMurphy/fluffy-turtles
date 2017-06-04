@@ -1,4 +1,5 @@
 class Inventory{
+  
   ArrayList<Tool> _inventory;
   
   Inventory(){
@@ -9,7 +10,7 @@ class Inventory{
     _inventory.add( l.removeTool(t) );
   }
   
-  Tool select(int x, int y){
+  Tool select(){
     return null;
   }
 
@@ -29,14 +30,19 @@ class Inventory{
   }
   
   void sideBar(){
-  stroke(0);
-    fill(#C6C6C6);
-    for(int i = 0; i < _inventory.size(); i++ ){
-      rect(0,60*i,50,60);
-      if( (_inventory.get(i)) != null ){
-      (_inventory.get(i)).display(10,i*10);
+    strokeWeight(2);
+    stroke(#95FFA9);
+    for(int i = 0; i < 10; i++ ){
+      fill(#065201);
+      rect(20,65+48*i,50,48);
+      if( (_inventory.size()) > i ){
+        (_inventory.get(i)).display(40,68+i*6);
+        fill(255);
+        text((_inventory.get(i)).getName(),45,110+48*i);
       }
     }
+    stroke(0);
+    strokeWeight(0);
   }
   
   public void display(){

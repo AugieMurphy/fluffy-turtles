@@ -34,17 +34,16 @@ class WorldMap{
     
     
     //Connect the nodes using paths 
-    
-    
+         
     map.addExit( new Path(l0, 0, 300,"door") );
     map.addExit( new Path(l1, 100, 300,"door") );
     map.addExit( new Path(l2, 200, 300,"door") );
     map.addExit( new Path(l3, 300, 300,"door") );
-    
-    l0.addExit( new Path(map,550,0,"door") );
-    l1.addExit( new Path(map,550,0,"door") );
-    l2.addExit( new Path(map,550,0,"door") );
-    l3.addExit( new Path(map,550,0,"door") );
+ 
+    l0.addExit( new Path(map,520,75,"mapIcon") );
+    l1.addExit( new Path(map,530,15,"mapIcon") );
+    l2.addExit( new Path(map,530,15,"mapIcon") );
+    l3.addExit( new Path(map,530,15,"mapIcon") );
     
     
     l0.addExit( new Path(l1,250,230,"door"));
@@ -59,7 +58,7 @@ class WorldMap{
     p.addQuest((new Quest(1, "Get to Village", l2)));
     //System.out.println(current.getDescription());
     
-    _MAP = new Tool("Map in a Bottle",100,100,"messageInABottle.png",13,33);
+    _MAP = new Tool("Map",100,100,"messageInABottle.png",13,33);
     l0.addTool(_MAP);
     //System.out.println(current.getDescription());
   }

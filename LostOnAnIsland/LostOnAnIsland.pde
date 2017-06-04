@@ -21,6 +21,11 @@ boolean paused; // when the player is in the inventory or menu screen, this is t
 boolean instructing; // when instructions are being shown, this is true
 boolean menuOpen;
 
+PImage menuIcon;
+PImage inventoryIcon;
+
+PImage redX;
+
 void setup(){
   size(600,600);
   p = new Player("Player");
@@ -31,6 +36,9 @@ void setup(){
   messaging = false;
   paused = false;
   _instructions = loadStrings("Instructions.txt");
+  menuIcon = loadImage("menuIcon.png");
+  inventoryIcon = loadImage("bag2.png");
+  redX = loadImage("redX.png");
 }
 
 void draw(){
@@ -61,7 +69,7 @@ void mousePressed(){
        else if( redX() ){ paused = !paused; gameScreen(); }
        else if( menuButton1() && menuOpen ){ readInstructions(); }
        else if( menuButton2() && menuOpen ){ _screen++; menuOpen = !menuOpen; }
-       else if( menuButton3() && menuOpen ){ setup(); _screen = 0; menuOpen = !menuOpen; } 
+       //else if( menuButton3() && menuOpen ){ _screen = 0; menuOpen = !menuOpen; p = new Player("newPlayer"); _map = new WorldMap(p); } 
     }
    }
     
@@ -76,7 +84,8 @@ void keyPressed(){
 /*** DISPLAY SCREENS ***/
 // USER INPUT HELPERS
 boolean isInventory(){
-  if( mouseX < 50 && mouseY > 550 ){ paused = true; return true; }
+  image(inventoryIcon,450,70,45,65);
+  if( (mouseX > 450 && mouseX < 495) && (mouseY > 70 && mouseY < 135) ){ paused = true; return true; }
   else{ return false; }
 }
 
@@ -120,23 +129,19 @@ void gameScreen(){
   //code to display main quest, current location
   background(0);
   fill(255, 247, 219); 
-  rect(20, 15, 560, 45); //makes the background box for the location text
+  rect(74, 15, 506, 45); //makes the background box for the location text
   fill(255);
-  rect(20, 560, 560, 30); //makes the background box for the quest text
+  rect(20, 550, 560, 45); //makes the background box for the quest text
   fill(0, 0, 0);
   textAlign(CENTER); // text is displayed now
   text("QUEST: " + p.peekQuest().getMessage(), 250, 580);
-  text(_map.getLocation().getName() + ": " +_map.getLocation().getDescription(), 250, 40);
+  text((_map.getLocation()).getName() + ": " +_map.getLocation().getDescription(), 300, 40);
   _map.getLocation().display();
   _map.showScreen(); //location/setting is displayed now
   
   fill(255);
-  rect(0,550,50,50,10,10,10,10);
-  rect(0,0,50,50,10,10,10,10);
-  fill(0);
-  text("inventory",25,575);
-  text("menu",25,25);
-  text("map",575,25);
+  image(inventoryIcon,450,70,45,65);
+  image(menuIcon,20,15,50,45);
   
   p.move(false); //character is now displayed
   
@@ -147,33 +152,25 @@ void endScreen(){
   // code for the end of the game (leave the island!!!)
   background(0);
   textAlign(CENTER);
+  fill(255);
   text("You've escaped from the island!!!", height/2, width/2);
 }
 
 void inventoryScreen(){
   
   p.showInventory();
-  fill(#FF2903);
-  rect(495,95,10,10);
-  fill(255);
-  text("x",500,100);
+  image(redX,495,95,10,10);
 }
 
 void menuScreen(){
   menuOpen = true;
-  
-  fill(#FF2903);
-  rect(495,95,10,10);
-  fill(255);
-  text("x",500,100);
   
   stroke(#E58176);
   strokeWeight(5);
   fill(#4B0700);
   rect(100,100,400,400,10,10,10,10);
   
-  stroke(#BE86FF);
-  fill(#E7D6FF);
+  fill(255);
   rect(125,145,350,50,10,10,10,10);
   rect(125,220,350,50,10,10,10,10);
   rect(125,295,350,50,10,10,10,10);
@@ -185,6 +182,8 @@ void menuScreen(){
   text("RESTART \n (new game)",300,315);
   
   strokeWeight(1); // reset strokeWeight so that it doesn't make other outlines thicker
+  
+  image(redX,495,95,10,10);
   
 }
 
@@ -201,10 +200,7 @@ void readInstructions(){
   text(str,300,300);
   
     
-  fill(#FF2903);
-  rect(495,95,10,10);
-  fill(255);
-  text("x",500,100);
+  image(redX,495,95,10,10);
   
 }
 

@@ -80,10 +80,7 @@ class Location implements Requirement{
       ellipse(250, 250, 250, 250);
     }
     **/
-    //displays the path to a new location
     showExits();
-    
-    //displays the tools
     displayTools();
   }
     

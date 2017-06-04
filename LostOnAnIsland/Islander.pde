@@ -80,6 +80,7 @@ class Islander{
       fill(0);
       shape(txtBox);
       text( curr, x-50, y-65 );
+      strokeWeight(0);
   }
   
 

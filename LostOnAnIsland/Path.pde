@@ -12,19 +12,23 @@ class Path{
   float xcoor; //coordinates of the path on the screen
   float ycoor;
   color c;
+  int shapeID; // 0 for circle, 1 for rec, 2 for mapIcon
   
   Path(){
     _destination = null;
+    shapeID = -1;
   }
   
   Path( Location pathLeadsTo, Polygon shapeOfEntrance ){
     _destination = pathLeadsTo;
     _shape = shapeOfEntrance;
+    shapeID = -1;
   }
   
   Path(Location pathLeadsTo){
     _destination = pathLeadsTo;
     _shape = null;
+    shapeID = -1;
   }
   
   //pre-condition: type should either be "door" or "hole"
@@ -37,6 +41,9 @@ class Path{
     }
     else if(type.equals("hole")){
       makeHole(x, y);
+    }
+    else if(type.equals("mapIcon")){
+      mapIcon(x,y);
     }
   }
   
@@ -79,6 +86,7 @@ class Path{
     int[] xcors = {(int) x, (int) (x + 30), (int) x, (int)(x + 30)};
     int[] ycors = {(int) y, (int) y, (int) (y + 50), (int) (y + 50)};
     _shape = new Polygon(xcors, ycors, 4);
+    shapeID = 1;
   }
   
   // if you want to make a hole, it sets shape of the "path" to an ellipse w/ same height and width
@@ -87,6 +95,16 @@ class Path{
     ycoor = (float) y;
     Ellipse2D.Double circle = new Ellipse2D.Double(x, y, 30, 30);
     _shape = circle;
+    shapeID = 0;
+  }
+  
+  void mapIcon(float x, float y){
+    xcoor = x;
+    ycoor = y;
+    int[] xcors = {(int) x, (int) (x + 48), (int) x, (int)(x + 48)};
+    int[] ycors = {(int) y, (int) y, (int) (y + 48), (int) (y + 48)};
+    _shape = new Polygon(xcors, ycors, 4);
+    shapeID = 2;
   }
   
   
@@ -94,12 +112,15 @@ class Path{
     stroke(0);
     fill(245, 0, 155); //sets it bright pink so it will get noticed
     //checks if it's a door or hole
-    if(_shape instanceof Polygon){
+    if( shapeID == 1 ){ //_shape instanceof Polygon){
       rect(xcoor, ycoor, 30, 50);
     }
-    else if(_shape instanceof Ellipse2D.Double){
+    else if( shapeID == 0 ){ //_shape instanceof Ellipse2D.Double){
       ellipseMode(CORNER);
       ellipse(xcoor, ycoor, 30, 30);
+    }
+    else if( shapeID == 2 ){
+      image( loadImage("map.png"),xcoor,ycoor,48,48);
     }
   }
   
