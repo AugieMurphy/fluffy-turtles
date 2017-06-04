@@ -1,35 +1,29 @@
 class Inventory{
-  Tool[] _inventory;
-  int _size;
+  ArrayList<Tool> _inventory;
   
   Inventory(){
-    _inventory = new Tool[10];
-    _size = 0;
+    _inventory = new ArrayList<Tool>();
   }
   
-  public void collect(Tool t , Location l){
-    _inventory[_size] = t;
-    l.removeTool(t);
+  void collect(Tool t , Location l){
+    _inventory.add( l.removeTool(t) );
   }
   
-  public Tool select(int x, int y){
-    // highlight the tool that was chosen
-    // figure out which tool was chosen based on coors
+  Tool select(int x, int y){
     return null;
   }
 
-  public void discard(Tool t){
-    for( int i = 0; i < _inventory.length; i++ ){
-      if( _inventory[i] == t ){
+  void discard(Tool t){
+    for( int i = 0; i < _inventory.size(); i++ ){
+      //if( (_inventory.get(i)) == t ){
       // drop/use tool
       }
-    }
   }
   
   public void display(){
+    /***
     stroke(0);
-    strokeWeight(4);
-    fill(#94DB99);
+    fill(#C6C6C6);
     for(int i = 0; i < _inventory.length; i++ ){
       rect(0,0,50,60);
       translate(0,60);
@@ -38,5 +32,17 @@ class Inventory{
       }
     }
     translate(0,-600);
+  }
+  ***/
+    background(#E1E7EA);
+    stroke(#0A075D);
+    fill(#BCDAFF);
+    for(int i = 0; i < _inventory.size(); i++ ){
+      if( i > 25 ){ /* idk, tell them they can't carry that much or make another page*/ }
+      else if( _inventory.get(i) != null ){
+        (_inventory.get(i)).display((i%5)*12+6,(i/5)*10+6);
+        rect((i%5)*12,(i/5)*12,10,10,10,10,10,10);
+      }
+    }
   }
 }

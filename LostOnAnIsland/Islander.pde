@@ -9,20 +9,20 @@ class Islander{
   int y; // y-cor of position
   
   LLStack<String> _dialogue; // what to say when they're clicked on
-  String _name; // name
   String curr;
   
-  PShape _character, _head, _robeBody, _leftArm, _rightArm, _leftEye, _rightEye, _hair, _mouth;
-  
+  String _name; // name
+  //PShape _character, _head, _robeBody, _leftArm, _rightArm, _leftEye, _rightEye, _hair, _mouth;
+  PImage _image;
 
-  Islander(int iX, int iY, String iNAME){
+  Islander(int iX, int iY, String iNAME, PImage iIMAGE){
     
     curr = "";
     _name = iNAME;
     x = iX;
     y = iY;
     _dialogue = new LLStack<String>();
-    
+    /**
     _character = createShape(GROUP);
     _character.setStrokeWeight(4);
     _hair = createShape(ELLIPSE,x,y+25,80,150);
@@ -56,9 +56,12 @@ class Islander{
     _mouth = createShape(ELLIPSE,x,y+10,10,2);
     _mouth.setStroke(0xffE54175);
     _character.addChild(_mouth);
+    **/
+    _image = iIMAGE;
   }
    
   public void addCrown(){
+    /**
     PShape _crown = createShape();
     _crown.beginShape();
     _crown.noStroke();
@@ -77,25 +80,25 @@ class Islander{
     _crown.endShape();
     _crown.setFill(0xffFAD177);
     _character.addChild(_crown);
+    **/
   }
   
   public void display(){
-    shape(_character);
+    image(_image,x,y);
+    //shape(_character);
     if( talking ){ interact(); }
   }
   
   public String talk(){ // remove and return the next thing to say from _dialogue
-  if( !_dialogue.isEmpty() ){
-    return _dialogue.pop();
-  }
-  else return "";
+    if( !_dialogue.isEmpty() ){
+      return _dialogue.pop();
+    }
+    else return "";
   }
   
     
   public void speakSwitch(){
-    if( talking && _dialogue.isEmpty() ){
-      
-      talking = !talking;}
+    if( talking && _dialogue.isEmpty() ){ talking = !talking; }
     else if( !talking && _dialogue.isEmpty() ){ curr = talk(); }
     else if( talking ){ curr = talk(); }
     else{ talking = true; }
@@ -107,12 +110,12 @@ class Islander{
   }
   
   public boolean isHotspot(){
-    return abs(mouseX - x) < 150 && abs(mouseY - y) < 250;
+    return abs(mouseX - x) < 50 && abs(mouseY - y) < 50;
   }
   
   public void interact(){
       stroke(0);
-      strokeWeight(4);
+      strokeWeight(2);
       PShape txtBox = createShape(RECT,x-250,y-25,200,75,5,5,5,5);
       txtBox.setFill(255);
       fill(0);

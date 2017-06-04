@@ -1,37 +1,34 @@
 class Tool{
   
-  Shape _tool;
+  String _name;
+  PImage _tool;
   
   int xcoor;
   int ycoor;
   
-  Tool(int x, int y){
+  Tool(){
+    _tool = null;
+    xcoor = 100;
+    ycoor = 100;
+    _name = "";
+  }
+  
+  Tool(String toolName, int x, int y, String fileName){
+    _tool = loadImage(fileName);
     xcoor = x;
     ycoor = y;
-    int[] xcors = {(int) x, (int) (x + 30), (int) x, (int)(x + 30)};
-    int[] ycors = {(int) y, (int) y, (int) (y + 30), (int) (y + 30)};
-    _tool = new Polygon(xcors, ycors, 4);
-  }
-  
-  Tool(Polygon p){
-    _tool = p;
-  }
-  
-  Shape getShape(){
-    return _tool;
+    _name = toolName;
   }
   
   public void display(){
     if( _tool == null){ }
-    else if(_tool instanceof Polygon){
-      rect(xcoor, ycoor, 30, 50);
-    }
+    else{ image(_tool,xcoor,ycoor); }
   }
   
   public void display(int x, int y){
     if( _tool == null){ }
-    else if(_tool instanceof Polygon){
-      rect(x, y, 30, 30);
+    else{
+      image(_tool,x,y);
     }
   }
   
@@ -39,9 +36,11 @@ class Tool{
   boolean contains(int x, int y){
     if(_tool == null) {
       System.out.println("no shape");
-      return false;}
+      return false;
+  }
     else{
-      return _tool.contains(x,y);
+      if( abs(xcoor - x) < 20 && abs(ycoor - y ) < 20 ){ return true; }
+      else{ return false; }
     }
   }
   
@@ -52,5 +51,4 @@ class Tool{
     // if it's not in the inventory, pick it up.
     // if it's in the inventory, highlight the box
   }
-  
 }

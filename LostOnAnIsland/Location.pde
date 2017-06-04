@@ -54,9 +54,9 @@ class Location implements Requirement{
     _background = loadImage(filename);
   }
   
-  public void display(){
+  void display(){
     
-    updateLocation(); //if the user is clicking on an exit, go to that destination
+    //updateLocation(); //if the user is clicking on an exit, go to that destination
     
     /*** should display the background ***/
     
@@ -80,19 +80,12 @@ class Location implements Requirement{
     
     //displays the path to a new location
     showExits();
+    
     //displays the tools
     displayTools();
-    
-    /*
-    for(int i = 0; i < _exits.size(); i++){
-      (_exits.get(i)).displayShape();
-    }
-    */
-    textAlign(CENTER);
-    text(getDescription(),300,50);
   }
     
-  public void showExits(){
+  void showExits(){
      for(int i = 0; i < _exits.size(); i++){
        (_exits.get(i)).displayShape();
      }
@@ -103,38 +96,25 @@ class Location implements Requirement{
   }
   
   
-  public void addTool(Tool t){
+  void addTool(Tool t){
     _tools.add(t);
   }
   
-  public void removeTool(Tool t){
+  Tool removeTool(Tool t){
     for( int i = 0; i < _tools.size(); i++ ){ 
-      if( _tools.get(i) == t ){ _tools.remove(i); }
+      if( _tools.get(i) == t ){ return _tools.remove(i); }
     }
+    return null;
   }
   
-  public void displayTools(){
+  void displayTools(){
     for( int i = 0; i < _tools.size(); i++ ){ 
       _tools.get(i).display();
     }
   }
   
-  public int getID(){
+  int getID(){
     return ID;
-  }
-  
-  public void updateLocation(){
-    int i = -1;
-    for(int x = 0; x < _exits.size(); x++){
-      if((_exits.get(x).contains(mouseX, mouseY) && mousePressed ) || (_exits.get(x).contains(p.getX() + 20, p.getY() + 25)))
-      {
-        i = x;
-      }
-    }
-    if(i > -1){
-      //System.out.println("new door");
-      _currLocation = (_exits.get(i)).getDestination();
-    }
   }
   
   void addFeature(PShape p, int fillColor, int strokeColor, int strokeWidth){
