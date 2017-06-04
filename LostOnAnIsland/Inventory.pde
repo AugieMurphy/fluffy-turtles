@@ -33,7 +33,7 @@ class Inventory{
     strokeWeight(2);
     stroke(#95FFA9);
     for(int i = 0; i < 10; i++ ){
-      fill(#065201);
+      fill(#065201,79);
       rect(20,65+48*i,50,48);
       if( (_inventory.size()) > i ){
         (_inventory.get(i)).display(40,68+i*6);

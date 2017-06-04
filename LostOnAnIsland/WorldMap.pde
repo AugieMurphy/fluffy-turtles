@@ -23,7 +23,8 @@ class WorldMap{
     current = l0;
     setupl0();
     
-    l0.setImage("Shipwreck.png");
+    map.setImage("emptyMap.png");
+    l0.setImage("beach2.png");
     l1.setImage("shore.jpg");
     l2.setImage("village.jpg");
     l3.setImage("store.jpg");
