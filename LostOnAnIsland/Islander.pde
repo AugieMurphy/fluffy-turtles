@@ -4,7 +4,7 @@ class Islander{
   /*** VARIABLES ***/
   
   boolean talking = false;
-  
+  int ID;
   int x; // x-cor of position
   int y; // y-cor of position
   int iWidth; // new width of islander
@@ -18,7 +18,7 @@ class Islander{
   ArrayList<Tool> _tools;
   LLStack<Quest> _quests;
 
-  Islander(int iX, int iY, String iNAME, String iIMAGE){
+  Islander(int iX, int iY, String iNAME, String iIMAGE int id){
     curr = "";
     _name = iNAME;
     x = iX;
@@ -29,9 +29,10 @@ class Islander{
     iHeight = 30;
     _tools = new ArrayList<Tool>();
     _quests = new LLStack<Quest>();
+    ID = id;
   }
   
-  Islander(int iX, int iY, String iNAME, String iIMAGE, int newWidth, int newHeight){
+  Islander(int iX, int iY, String iNAME, String iIMAGE, int newWidth, int newHeight,int id){
     curr = "";
     _name = iNAME;
     x = iX;
@@ -42,6 +43,7 @@ class Islander{
     iHeight = newHeight;
     _tools = new ArrayList<Tool>();
     _quests = new LLStack<Quest>();
+    ID = id;
   }
   
   void display(){
