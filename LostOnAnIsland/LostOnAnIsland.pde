@@ -47,74 +47,76 @@ void draw(){
     if( !paused ){ gameScreen(); } 
     else if( instructing ){ readInstructions(); }
     else if( menuOpen ){ menuScreen(); }
-    else{ inventoryScreen(); }
+    else{ inventoryScreen(); _map.hovering(); }
   }
   else if( _screen == 3 ){ endScreen(); }
 }
 
+/*** USER INPUT HANDLING ***/
 void mousePressed(){
   
- if(_screen == 1){_screen += 1; }
+ if(_screen == 1){ _screen += 1; } // "cli to start"
  
   else if( _screen == 2 ){ 
-    switchMessage();
-    _map.pressMouse(); 
+    _map.mousePressed(); // see if map needs to do anything
+    if( _messages.isEmpty() ){ messaging = false; } // stop messaging if there aren't any messages left
+    else{ messaging = true; currMessage = _messages.pop(); } // if there's more messages and they click again, show another one
     if( !paused && !messaging){ // if we don't need to tell the user something
         if( isInventory() ){ inventoryScreen(); } // they see what tools they have if they click on the inventory
         else if( isMenu() ){ menuScreen(); } // if they click the menu button, pop-up menu appears
       }
-     else if( paused ){ 
-       if( redX() && instructing){ paused = !paused; instructing = !instructing; }
-       else if( redX() && menuOpen){ paused = !paused; gameScreen(); menuOpen = !menuOpen; }
-       else if( redX() ){ paused = !paused; gameScreen(); }
-       else if( menuButton1() && menuOpen ){ readInstructions(); }
-       else if( menuButton2() && menuOpen ){ _screen++; menuOpen = !menuOpen; }
-       //else if( menuButton3() && menuOpen ){ _screen = 0; menuOpen = !menuOpen; p = new Player("newPlayer"); _map = new WorldMap(p); } 
+     else if( paused ){ // if the main screen isn't displayed
+       if( redX() && instructing){ instructing = !instructing; } // if they x-out of the instructions
+       else if( redX() ){ // if they "x-out" of the inventory or of the pop-up menu
+         paused = !paused; gameScreen(); // go back to the game screen
+         if( menuOpen){ menuOpen = !menuOpen; } //close the menu
+       }
+       else if( menuOpen ){ 
+         if( menuButton1() ){ readInstructions(); } // if button one is clicked, show the instructions
+         else if( menuButton2() && menuOpen ){ _screen++; menuOpen = !menuOpen; } // if button two is clicked, end the game
+         //else if( menuButton3() && menuOpen ){ _screen = 0; menuOpen = !menuOpen; p = new Player("newPlayer"); _map = new WorldMap(p); } 
+       }
     }
    }
     
-   if( _screen == 3 ){ }
+   if( _screen == 3 ){ } //if the game is over
   
 }
 
 void keyPressed(){
-  p.move(true);
+  p.move(true); // move the player if the user is pressing the arrow or w,a,s,d keys
 }
 
-/*** DISPLAY SCREENS ***/
 // USER INPUT HELPERS
-boolean isInventory(){
+boolean isInventory(){ // returns true if this is a hotspot for the inventory, false otherwise
   image(inventoryIcon,450,70,45,65);
   if( (mouseX > 450 && mouseX < 495) && (mouseY > 70 && mouseY < 135) ){ paused = true; return true; }
   else{ return false; }
 }
 
-boolean isMenu(){
+boolean isMenu(){ // returns true if this is a hotspot for the menu, false otherwise
   if( mouseX < 50 && mouseY < 50 ){ paused = true; return true; }
   else{ return false; }
 }
 
-boolean menuButton1(){
+boolean menuButton1(){ // true if mouse is on a hotspot for menuBotton1, false otherwise
   return (mouseX < 475 && mouseX > 125) && (mouseY > 145 && mouseY < 195);
 }
-boolean menuButton2(){
+boolean menuButton2(){ // true if mouse is on a hotspot for menuBotton1, false otherwise
   return (mouseX < 475 && mouseX > 125) && (mouseY > 220 && mouseY < 270);
 }
-boolean menuButton3(){
+boolean menuButton3(){ // true if mouse is on a hotspot for menuBotton1, false otherwise
   return (mouseX < 475 && mouseX > 125) && (mouseY > 295 && mouseY < 345);
 }
-
-boolean redX(){
+boolean redX(){ // true if mouse is on a hotspot for menuBotton1, false otherwise
   if( abs(mouseX-500) < 20 && abs(mouseY-100) < 20 ){ return true; }
   else{ return false; }
 }
-
 // END USER INPUT HELPERS
-
-/*** END USER INPUT ***/
+/*** END USER INPUT HANDLING ***/
 
 /*** DISPLAY SCREENS ***/
-void launchScreen(){
+void launchScreen(){ // greeting screen
   // code to display the first screen (title + "click to start")
   background(#1A341A);
   fill(255);
@@ -136,7 +138,6 @@ void gameScreen(){
   textAlign(CENTER); // text is displayed now
   text("QUEST: " + p.peekQuest().getMessage(), 250, 580);
   text((_map.getLocation()).getName() + ": " +_map.getLocation().getDescription(), 300, 40);
-  _map.getLocation().display();
   _map.showScreen(); //location/setting is displayed now
   
   fill(255);
@@ -145,7 +146,7 @@ void gameScreen(){
   
   p.move(false); //character is now displayed
   
-  if( messaging ){ displayMessage(); } // displays any waiting messages
+  if( messaging ){ displayMessage(); }
 }
 
 void endScreen(){
@@ -198,25 +199,14 @@ void readInstructions(){
     str += _instructions[i] + "\n";
   }
   text(str,300,300);
-  
-    
   image(redX,495,95,10,10);
-  
 }
-
 /*****/
-public void switchMessage(){
-    if( messaging && _messages.isEmpty() ){ messaging = !messaging;}
-    else if( !messaging && _messages.isEmpty() ){ messaging = messaging; }
-    else if( messaging ){ currMessage = _messages.pop(); }
-    else if( messaging ){ _messages.pop(); }
-    else{ messaging = true; }
-}
  //<>//
 public void addMessage(String s){
   _messages.push(s);
-  currMessage = s;
 }
+
 
 public void displayMessage(){
   stroke(0);

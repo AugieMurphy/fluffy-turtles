@@ -42,9 +42,9 @@ class WorldMap{
     map.addExit( new Path(l3, 300, 300,"door") );
  
     l0.addExit( new Path(map,520,75,"mapIcon") );
-    l1.addExit( new Path(map,530,15,"mapIcon") );
-    l2.addExit( new Path(map,530,15,"mapIcon") );
-    l3.addExit( new Path(map,530,15,"mapIcon") );
+    l1.addExit( new Path(map,520,75,"mapIcon") );
+    l2.addExit( new Path(map,520,75,"mapIcon") );
+    l3.addExit( new Path(map,520,75,"mapIcon") );
     
     
     l0.addExit( new Path(l1,250,230,"door"));
@@ -54,12 +54,13 @@ class WorldMap{
     l2.addExit(new Path(l3, 400, 200, "door"));
     l3.addExit(new Path(l1, 200, 360, "hole"));
     
+
     p.addQuest((new Quest(0, "No quests left")));
     p.addQuest((new Quest(2, "Get to Square", l3)));
     p.addQuest((new Quest(1, "Get to Village", l2)));
     //System.out.println(current.getDescription());
     
-    _MAP = new Tool("Map",300,500,"messageInABottle.png",13,33);
+    _MAP = new Tool("Bottle",300,500,"messageInABottle.png",13,33);
     l0.addTool(_MAP);
     //System.out.println(current.getDescription());
   }
@@ -106,7 +107,7 @@ class WorldMap{
       p.addTool(current._tools.get(i),current);
     }
   }
-  
+
   public void setupl0(){
     size(600,600);
     leader = new Islander(500,450,"Leader", "PrincessPeach_fwd.png",40,76);
@@ -122,13 +123,16 @@ class WorldMap{
     updateLocation();
     p.popQuest();
     current.display();
-    //leader.display();
     current.displayTools();
     current.showExits();
     p.sideBar();
   }
   
-  public void pressMouse(){
-    if( _screen == 0 ){ if( leader.isHotspot() ){ leader.speakSwitch(); } }
+  void hovering(){
+    current.hovering();
+  }
+  
+  void mousePressed(){
+    current.mousePressed();
   }
 }

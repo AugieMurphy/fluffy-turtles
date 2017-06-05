@@ -1,4 +1,5 @@
 class Player{
+  
   String name;
   Inventory _inventory;
   LLStack<Quest> quests;
@@ -19,7 +20,6 @@ class Player{
    xcoor = 425;
    ycoor = 475;
    _inventory = new Inventory();
-   
  }
  
  int getX(){
@@ -61,8 +61,16 @@ class Player{
    
      _inventory.collect(tool,l);
      _messages.push("You've found a new tool: \n" + tool.getName() + " \n has been added to your inventory!!!");
-   
-   //return tool.getName();
+     messaging = true;
+     currMessage = _messages.pop();
+     //return tool.getName();
+ }
+ 
+ void receiveTool(Tool t){
+   _inventory.receive(t);
+   _messages.push("Woah... They just gave you a new tool: \n" + t.getName() + " \n has been added to your inventory!!!");
+   messaging = true;
+   currMessage = _messages.pop();
  }
  
  //decBy = amt to decrease reputation by
@@ -141,6 +149,10 @@ class Player{
  
  void sideBar(){
    _inventory.sideBar();
+ }
+ 
+ void updateQuest(){
+   
  }
  
 }

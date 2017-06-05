@@ -10,6 +10,10 @@ class Inventory{
     _inventory.add( l.removeTool(t) );
   }
   
+  void receive(Tool t){
+    _inventory.add(t);
+  }
+  
   Tool select(){
     return null;
   }
@@ -45,21 +49,7 @@ class Inventory{
     strokeWeight(0);
   }
   
-  public void display(){
-    /**
-    stroke(0);
-    fill(#C6C6C6);
-    for(int i = 0; i < _inventory.length; i++ ){
-      rect(0,0,50,60);
-      translate(0,60);
-      if( _inventory[i] != null ){
-      _inventory[i].display(10,i*10);
-      }
-    }
-    translate(0,-600);
-  }
-  **/
-  
+  public void display(){  
     background(#E1E7EA);
     stroke(#0A075D);
     fill(#BCDAFF);

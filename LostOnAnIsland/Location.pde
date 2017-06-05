@@ -46,6 +46,16 @@ class Location implements Requirement{
     _villagers = new ArrayList<Islander>();
   }
   
+  void mousePressed(){
+    for( Islander i: _villagers ){ i.mousePressed(); }
+  }
+  
+  void hovering(){
+    for( Islander i: _villagers ){ i.hovering(); }
+    for( Tool t: _tools ){ t.hovering(); }
+    for( Path p: _exits ){ p.hovering(); }
+  }
+  
   String getDescription(){
     return _description;
   }

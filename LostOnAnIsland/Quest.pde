@@ -16,7 +16,7 @@ class Quest{
      }
    }
    
-   Quest(int id, String m){//Questc can be made wit ha certain ID and message in mind
+   Quest(int id, String m){//Quests can be made wit ha certain ID and message in mind
      ID = id;
      message = m;
      complete = false;
@@ -36,6 +36,11 @@ class Quest{
    
    Requirement getReq(){
      return req;
+   }
+   
+   String getStatus(){
+     if( complete ){ return "STATUS: COMPLETE"; }
+     else{ return "STATUS: IN PROGRESS"; }
    }
    
  

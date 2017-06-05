@@ -48,9 +48,7 @@ class Path{
   }
   
   String toString(){
-    String pathName = "Path to ";
-    // _destination name
-    return pathName;
+    return "Path to " + getDestination();
   }
   
   //checks if x and y are within its shape's boundaries
@@ -107,6 +105,9 @@ class Path{
     shapeID = 2;
   }
   
+  void hovering(){
+    if( contains(mouseX,mouseY) ){ text( toString(), xcoor, ycoor - 50 ); }
+  }
   
   void displayShape(){
     stroke(0);

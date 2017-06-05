@@ -7,18 +7,18 @@ class Islander{
   
   int x; // x-cor of position
   int y; // y-cor of position
-  int iWidth;
-  int iHeight;
+  int iWidth; // new width of islander
+  int iHeight; // new height of islander
   
   LLStack<String> _dialogue; // what to say when they're clicked on
-  String curr;
+  String curr; // next thing to say
   
   String _name; // name
-  //PShape _character, _head, _robeBody, _leftArm, _rightArm, _leftEye, _rightEye, _hair, _mouth;
   PImage _image;
+  ArrayList<Tool> _tools;
+  LLStack<Quest> _quests;
 
   Islander(int iX, int iY, String iNAME, String iIMAGE){
-    
     curr = "";
     _name = iNAME;
     x = iX;
@@ -27,10 +27,11 @@ class Islander{
     _image = loadImage(iIMAGE);
     iWidth = 15;
     iHeight = 30;
+    _tools = new ArrayList<Tool>();
+    _quests = new LLStack<Quest>();
   }
   
   Islander(int iX, int iY, String iNAME, String iIMAGE, int newWidth, int newHeight){
-    
     curr = "";
     _name = iNAME;
     x = iX;
@@ -39,27 +40,24 @@ class Islander{
     _image = loadImage(iIMAGE);
     iWidth = newWidth;
     iHeight = newHeight;
+    _tools = new ArrayList<Tool>();
+    _quests = new LLStack<Quest>();
   }
   
-  public void display(){
+  void display(){
     image(_image,x,y,iWidth,iHeight);
-    //shape(_character);
     if( talking ){ interact(); }
-  }
-  
-  public String talk(){ // remove and return the next thing to say from _dialogue
-    if( !_dialogue.isEmpty() ){
-      return _dialogue.pop();
+    if( _dialogue == null ){ 
+      while( _tools != null ){ giveGift(); } 
+      while( _quests != null ){ giveQuest(_quests.pop()); }
     }
-    else return "";
   }
   
-    
-  public void speakSwitch(){
-    if( talking && _dialogue.isEmpty() ){ talking = !talking; }
-    else if( !talking && _dialogue.isEmpty() ){ curr = talk(); }
-    else if( talking ){ curr = talk(); }
-    else{ talking = true; }
+  void mousePressed(){
+    if( isHotspot() ){ 
+      if( _dialogue.isEmpty() ){ talking = false; }
+      else{ talking = true; curr = _dialogue.pop(); }
+    }
   }
   
   public void addSpeech(String s){ // add a new thing to say to _dialogue
@@ -68,11 +66,10 @@ class Islander{
   }
   
   public boolean isHotspot(){
-    
     return (mouseX > x && mouseX < x + iWidth) && (y < mouseY && mouseY < iHeight + y);
   }
   
-  public void interact(){
+  void interact(){
       stroke(0);
       strokeWeight(2);
       PShape txtBox = createShape(RECT,x-150,y-85,200,75,5,5,5,5);
@@ -83,5 +80,27 @@ class Islander{
       strokeWeight(0);
   }
   
+  void hovering(){
+    if( isHotspot() ){ text(_name, x,y); }
+  }
+  
+  void giveGift(){ 
+    p.receiveTool(_tools.remove(0));
+  }
+  
+  void giveQuest(Quest q){
+    p.addQuest(q);
+    _messages.push("NEW QUEST ALERT: \n" + q.getMessage() + q.getStatus());
+    messaging = true;
+    currMessage = _messages.pop();
+  }
+  
+  void addQuest(Quest q){
+    _quests.push(q);
+  }
 
+  void addTool(Tool t){
+    _tools.add(t);
+  }
+  
 }

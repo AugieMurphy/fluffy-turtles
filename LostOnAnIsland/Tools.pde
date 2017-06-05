@@ -9,11 +9,14 @@ class Tool{
   int newWidth;
   int newHeight;
   
+  int ID;
+  
   Tool(){
     _tool = null;
     xcoor = 100;
     ycoor = 100;
     _name = "";
+    ID = -1;
   }
   
   Tool(String toolName, int x, int y, String fileName, int WIDTH, int HEIGHT){
@@ -23,6 +26,17 @@ class Tool{
     _name = toolName;
     newWidth = WIDTH;
     newHeight = HEIGHT;
+    ID = -1;
+  }
+  
+  Tool(String toolName, int x, int y, String fileName, int WIDTH, int HEIGHT, int idNum){
+    _tool = loadImage(fileName);
+    xcoor = x;
+    ycoor = y;
+    _name = toolName;
+    newWidth = WIDTH;
+    newHeight = HEIGHT;
+    ID = idNum;
   }
 
   
@@ -60,6 +74,10 @@ class Tool{
   
   String getName(){
     return _name;
+  }
+  
+  void hovering(){
+    if( contains(mouseX,mouseY) ){ text( getName(), xcoor, ycoor-50); }
   }
   
 }
