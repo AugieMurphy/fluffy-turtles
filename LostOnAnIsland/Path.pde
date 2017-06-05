@@ -14,6 +14,7 @@ class Path{
   color c;
   int shapeID; // 0 for circle, 1 for rec, 2 for mapIcon
   
+  
   Path(){
     _destination = null;
     shapeID = -1;

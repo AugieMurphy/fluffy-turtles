@@ -10,6 +10,10 @@ class Location implements Requirement{
   Location _currLocation;
   Features _features;
   ArrayList<Islander> _villagers;
+  float xborderI;// These represent the universal border for all objects
+  float yborderI;
+  float xborderII;
+  float yborderII;
   
   Location(){
     _name = "";
@@ -20,6 +24,11 @@ class Location implements Requirement{
     _currLocation = null;
     _features = new Features();
     _villagers = new ArrayList<Islander>();
+    xborderI = 20;
+    yborderI = 65;
+    xborderII = 580;
+    yborderII = 545;;
+    
   }
   
   Location(String title, String moreInfo,int id){
@@ -32,6 +41,10 @@ class Location implements Requirement{
     _currLocation = null;
     _features = new Features();
     _villagers = new ArrayList<Islander>();
+    xborderI = 20;
+    yborderI = 65;
+    xborderII = 580;
+    yborderII = 545;
   }
   
   Location(String title, String moreInfo, PImage scenery, int id){
@@ -44,6 +57,10 @@ class Location implements Requirement{
     _currLocation = null;
     _features = new Features();
     _villagers = new ArrayList<Islander>();
+    xborderI = 20;
+    yborderI = 65;
+    xborderII = 580;
+    yborderII = 545;
   }
   
   void mousePressed(){

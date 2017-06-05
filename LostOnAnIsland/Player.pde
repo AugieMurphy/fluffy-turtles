@@ -110,6 +110,7 @@ class Player{
  //b is if key is pressed
  void move(boolean b){
    //display updated character's location
+   if(place != null){
     if(b){
     if(keyCode == UP || key == 'w' || key == 'W'){
        ycoor -= 5;
@@ -126,6 +127,19 @@ class Player{
        xcoor -= 5;
      }
     }
+    if(xcoor < place.xborderI+50){// The following code sets to border for how to player can walk.
+      xcoor +=5;
+    }
+    if(xcoor > place.xborderII-40){
+      xcoor -=5;
+    }
+    if(ycoor < place.yborderI){
+      ycoor +=5;
+    }
+    if(ycoor > place.yborderII-50){
+      ycoor -=5;
+    }
+   }
     image(image, xcoor, ycoor, 40, 50); 
  }
  
