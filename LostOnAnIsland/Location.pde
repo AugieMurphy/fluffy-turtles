@@ -68,6 +68,7 @@ class Location implements Requirement{
   }
   
   void hovering(){
+    fill(255);
     for( Islander i: _villagers ){ i.hovering(); }
     for( Tool t: _tools ){ t.hovering(); }
     for( Path p: _exits ){ p.hovering(); }

@@ -11,7 +11,7 @@ class Path{
   Shape _shape; //Shape has a contains() method which makes boundaries and can be used to check if mouse or player is touching it
   float xcoor; //coordinates of the path on the screen
   float ycoor;
-  color c;
+  int r, b, g;
   int shapeID; // 0 for circle, 1 for rec, 2 for mapIcon
   
   
@@ -20,7 +20,7 @@ class Path{
     shapeID = -1;
   }
   
-  Path( Location pathLeadsTo, Polygon shapeOfEntrance ){
+  Path( Location pathLeadsTo, Polygon shapeOfEntrance){
     _destination = pathLeadsTo;
     _shape = shapeOfEntrance;
     shapeID = -1;
@@ -32,9 +32,18 @@ class Path{
     shapeID = -1;
   }
   
+  void setColor(int r1, int b1, int g1){
+    r = r1;
+    b = b1; 
+    g = g1;
+  }
+  
   //pre-condition: type should either be "door" or "hole"
   //easier to set up path this way instead of making the polygon externally
-  Path(Location pathLeadsTo, float x, float y, String type){
+  Path(Location pathLeadsTo, float x, float y, String type, int r1, int b1, int g1){
+    r = r1;
+    b = b1; 
+    g = g1;
     _destination = pathLeadsTo;
     //_shape = null;
     if(type.equals("door")){
@@ -49,7 +58,7 @@ class Path{
   }
   
   String toString(){
-    return "Path to " + getDestination();
+    return getDestination().getName();
   }
   
   //checks if x and y are within its shape's boundaries
@@ -110,7 +119,8 @@ class Path{
   
   void displayShape(){
     stroke(0);
-    fill(245, 0, 155); //sets it bright pink so it will get noticed
+    if(r == 0 && b == 0 && g == 0) fill(245, 0, 155); //sets it bright pink so it will get noticed
+    else fill(r, g, b);
     //checks if it's a door or hole
     if( _shape instanceof Rectangle){ //_shape instanceof Polygon){
       rect(xcoor, ycoor, 30, 50);

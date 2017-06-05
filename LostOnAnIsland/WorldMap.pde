@@ -38,23 +38,23 @@ class WorldMap{
     
     //Connect the nodes using paths 
          
-    map.addExit( new Path(l0, 300, 300,"door") );
+    map.addExit( new Path(l0, 300, 300,"door",142, 7, 170) );
    /* map.addExit( new Path(l1, 100, 300,"door") );
     map.addExit( new Path(l2, 200, 300,"door") );
     map.addExit( new Path(l3, 300, 300,"door") );*/
  
-    l0.addExit( new Path(map,520,75,"mapIcon") );
-    l1.addExit( new Path(map,520,75,"mapIcon") );
-    l2.addExit( new Path(map,520,75,"mapIcon") );
-    l3.addExit( new Path(map,520,75,"mapIcon") );
+    l0.addExit( new Path(map,520,75,"mapIcon", 7, 13, 170) );
+    l1.addExit( new Path(map,520,75,"mapIcon", 9, 170, 7));
+    l2.addExit( new Path(map,520,75,"mapIcon", 66, 120, 22));
+    l3.addExit( new Path(map,520,75,"mapIcon", 250, 0, 175) );
     
     
-    l0.addExit( new Path(l1,250,230,"door"));
-    l1.addExit( new Path(l0, 200, 300, "door"));
-    l1.addExit( new Path(l2, 250, 230, "door"));
-    l2.addExit(new Path(l1, 230, 350, "hole"));
-    l2.addExit(new Path(l3, 400, 200, "door"));
-    l3.addExit(new Path(l1, 200, 360, "hole"));
+    l0.addExit( new Path(l1,250,230,"door", 9, 170, 7));
+    l1.addExit( new Path(l0, 200, 300, "door", 9, 170, 7));
+    l1.addExit( new Path(l2, 250, 230, "door", 7, 13, 170));
+    l2.addExit(new Path(l1, 230, 350, "hole", 7, 13, 170));
+    l2.addExit(new Path(l3, 400, 200, "door", 250, 0, 175));
+    l3.addExit(new Path(l1, 200, 360, "hole", 66, 120, 22));
     
 
     p.addQuest((new Quest(0, "No quests left")));
@@ -143,6 +143,7 @@ class WorldMap{
     
     
     p.sideBar();
+    hovering();
   }
   
   void hovering(){

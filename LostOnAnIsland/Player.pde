@@ -113,18 +113,18 @@ class Player{
    if(place != null){
     if(b){
     if(keyCode == UP || key == 'w' || key == 'W'){
-       ycoor -= 5;
+       ycoor -= 10;
      }
      else if(keyCode == DOWN || key == 's' || key == 'S'){
-       ycoor += 5;
+       ycoor += 10;
       
      }
      else if(keyCode == RIGHT || key == 'd' || key == 'D'){
-       xcoor += 5;
+       xcoor += 10;
       
      }
      else if(keyCode == LEFT || key == 'a' || key == 'A'){
-       xcoor -= 5;
+       xcoor -= 10;
      }
     }
     if(xcoor < place.xborderI+50){// The following code sets to border for how to player can walk.

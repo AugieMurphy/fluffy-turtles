@@ -84,7 +84,7 @@ void mousePressed(){
 }
 
 void keyPressed(){
-  p.move(true); // move the player if the user is pressing the arrow or w,a,s,d keys
+  if(_screen == 2) p.move(true); // move the player if the user is pressing the arrow or w,a,s,d keys
 }
 
 // USER INPUT HELPERS
@@ -209,7 +209,7 @@ public void addMessage(String s){
 
 public void displayMessage(){
   stroke(0);
-  fill(#FF0303);
+  fill(#D403FF);
   rect(100,603,400,50);
   textAlign(CENTER);
   fill(255);
