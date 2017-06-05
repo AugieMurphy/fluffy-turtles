@@ -7,6 +7,8 @@ class WorldMap{
   Player p; //mainly to keep track of player's place && update location
   Islander leader;
   Tool _MAP;
+  Location map;
+  boolean inMap = false;
   
   WorldMap(Player player){
     
@@ -14,7 +16,7 @@ class WorldMap{
     p = player;
     
     //Create the different Locations
-    Location map = new Location( "MAP!!!", "Get your bearings", -1);
+    map = new Location( "MAP!!!", "Get your bearings", -1);
     Location l0 = new Location( "Beach-- Crash Site", "You were shipwrecked at this site...", 0 );
     Location l1 = new Location( "Beach-- Crash Site", "You were shipwrecked at this site...", 1 );
     Location l2 = new Location("Village Entrance", "You've stumbled upon the entrance to a small village...",2 );
@@ -23,7 +25,7 @@ class WorldMap{
     current = l0;
     setupl0();
     
-    map.setImage("emptyMap.png");
+    map.setImage("emptyMap.jpg");
     l0.setImage("beach2.png");
     l1.setImage("shore.jpg");
     l2.setImage("village.jpg");
@@ -36,10 +38,10 @@ class WorldMap{
     
     //Connect the nodes using paths 
          
-    map.addExit( new Path(l0, 0, 300,"door") );
-    map.addExit( new Path(l1, 100, 300,"door") );
+    map.addExit( new Path(l0, 300, 300,"door") );
+   /* map.addExit( new Path(l1, 100, 300,"door") );
     map.addExit( new Path(l2, 200, 300,"door") );
-    map.addExit( new Path(l3, 300, 300,"door") );
+    map.addExit( new Path(l3, 300, 300,"door") );*/
  
     l0.addExit( new Path(map,520,75,"mapIcon") );
     l1.addExit( new Path(map,520,75,"mapIcon") );
@@ -84,21 +86,33 @@ class WorldMap{
   //checks if player and mouse clicks a path to a new location and updates current location to that location
   void updateLocation(){
     int i = -1;
+    
+    if(!inMap){
     for(int x = 0; x < current._exits.size(); x++){
-      if((current._exits.get(x).contains(mouseX, mouseY) && mousePressed ) || (current._exits.get(x).contains(p.getX() + 20, p.getY() + 25)))
+      if((current._exits.get(x).contains(p.getX() + 20, p.getY() + 25)) || (current._exits.get(x).getDestination() == map && current._exits.get(x).contains(mouseX, mouseY) &&
+      mousePressed))
       {
         i = x;
       }
+      }
+    }
+    else{
+       if(map._exits.get(0).contains(mouseX, mouseY) && mousePressed) inMap = !inMap;
     }
     if(i > -1){
-      setLocation(current._exits.get(i).getDestination());
+      if(current._exits.get(i).getDestination() == map) inMap = true;
+      else{
+        setLocation(current._exits.get(i).getDestination());
+      }
     }
+    map._exits.get(0).setDestination(current);
+    p.setLocation(current);
   }
   
   void locateTools(){
     int i = -1;
     for(int x = 0; x < current._tools.size(); x++){
-      if( ((current._tools.get(x)).contains(mouseX, mouseY) && mousePressed) || ((current._tools.get(x).contains(p.getX() + 20, p.getY() + 25))) )
+      if( (current._tools.get(x).contains(p.getX() + 20, p.getY() + 25)))
       {
         i = x;
       }
@@ -109,8 +123,7 @@ class WorldMap{
   }
 
   public void setupl0(){
-    size(600,600);
-    leader = new Islander(500,450,"Leader", "PrincessPeach_fwd.png",40,76);
+    leader = new Islander(500,450,"Leader", "PrincessPeach_fwd.png",40,76, 0);
     leader.addSpeech("BUT, maybe I can help you... \n complete these quests and \n then  come find me. \n I'll get you off of this island.");
     leader.addSpeech("I hope you have another boat. \n Nobody's left this island in years.");
     leader.addSpeech("Were you in a shipwreck \n during the storm \n last night?");
@@ -122,9 +135,13 @@ class WorldMap{
     locateTools();
     updateLocation();
     p.popQuest();
-    current.display();
-    current.displayTools();
-    current.showExits();
+    if(!inMap) {current.display(); current.showExits(); current.displayTools();}
+    else{map.display(); map.showExits();
+      fill(255);
+      textAlign(CENTER);
+      text("Exit\nMap", 315, 325);}
+    
+    
     p.sideBar();
   }
   

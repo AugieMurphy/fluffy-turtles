@@ -77,19 +77,10 @@ class Location implements Requirement{
       image(_background, 20, 65, 560, 480);
     }
     
-    // if there's no background image, but there's a drawn background, display it
     else if( _features != null ){
       _features.display();
     }
-    /**
-    //just displays/draws an island as default image if there is no location
-    else {
-      fill(0, 216, 242);
-      rect(20, 60, 560, 480);
-      fill(250, 241, 222);
-      ellipse(250, 250, 250, 250);
-    }
-    **/
+    
     showExits();
     displayTools();
     showIslanders();

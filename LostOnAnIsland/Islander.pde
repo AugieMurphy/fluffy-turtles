@@ -18,7 +18,7 @@ class Islander{
   ArrayList<Tool> _tools;
   LLStack<Quest> _quests;
 
-  Islander(int iX, int iY, String iNAME, String iIMAGE int id){
+  Islander(int iX, int iY, String iNAME, String iIMAGE, int id){
     curr = "";
     _name = iNAME;
     x = iX;
@@ -58,7 +58,9 @@ class Islander{
   void mousePressed(){
     if( isHotspot() ){ 
       if( _dialogue.isEmpty() ){ talking = false; }
-      else{ talking = true; curr = _dialogue.pop(); }
+      else{ talking = true; 
+            curr = _dialogue.pop();
+            }
     }
   }
   

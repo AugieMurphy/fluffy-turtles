@@ -59,7 +59,7 @@ class Tool{
       return false;
   }
     else{
-      if( abs(xcoor - x) < 20 && abs(ycoor - y ) < 20 ){ return true; }
+      if( abs(xcoor - x) < newWidth && abs(ycoor - y ) < newHeight ){ return true; }
       else{ return false; }
     }
   }

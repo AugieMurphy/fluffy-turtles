@@ -9,7 +9,11 @@ import java.util.LinkedList;
 	    _stack.addFirst(x);
 	    _stackSize+=1;
     }
-
+    
+    void pushLast(T  x){
+      _stack.addLast(x);
+      _stackSize+=1;
+    }
      T pop(){
         if(_stack.size() ==0){
 	          return null;

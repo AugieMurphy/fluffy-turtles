@@ -53,7 +53,7 @@ class Quest{
        if(Loc.ID == 1){
          return true;}}
      if (ID == 2){
-       if(Islander.ID == 5){//Arbitratry Islander ID, will give specefic clue
+       if(Isl.ID == 5){//Arbitratry Islander ID, will give specefic clue
          return true;}}
      if (ID == 3){
        if(item.id == 2){//ID for WP 1

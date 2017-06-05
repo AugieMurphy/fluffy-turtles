@@ -27,7 +27,7 @@ PImage inventoryIcon;
 PImage redX;
 
 void setup(){
-  size(600,600);
+  size(600,650);
   p = new Player("Player");
   _map = new WorldMap(p);
   _messages = new LLStack<String>();
@@ -41,7 +41,7 @@ void setup(){
   redX = loadImage("redX.png");
 }
 
-void draw(){
+void draw(){ //<>//
   if( _screen == 1 ){ launchScreen(); }
   else if( _screen == 2 ){ 
     if( !paused ){ gameScreen(); } 
@@ -121,7 +121,7 @@ void launchScreen(){ // greeting screen
   background(#1A341A);
   fill(255);
   textAlign(CENTER);
-  text("Oh no, you're stranded on a deserted island! \n How will you ever escape? \n Click to start", height/2, width/2);
+  text("Oh no, you're stranded on a deserted island! \n How will you ever escape? \n Click to start", width/2, height/2);
 }
 
 void gameScreen(){
@@ -190,7 +190,6 @@ void menuScreen(){
 
 void readInstructions(){
   instructing = true;
-
   background(255);
   textAlign(CENTER);
   fill(0);
@@ -210,9 +209,9 @@ public void addMessage(String s){
 
 public void displayMessage(){
   stroke(0);
-  fill(255);
-  rect(100,275,400,50);
+  fill(#FF0303);
+  rect(100,603,400,50);
   textAlign(CENTER);
-  fill(0);
-  text(currMessage,300,295);
+  fill(255);
+  text(currMessage,300,620);
 }

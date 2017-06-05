@@ -1,7 +1,7 @@
 // Path leads from one location to another
 // Locations kind of work like linked lists in that regard
 import java.awt.geom.*;
-import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.awt.*;
 
 class Path{
@@ -81,10 +81,8 @@ class Path{
   void makeDoor(float x, float y){
     xcoor = x;
     ycoor = y;
-    int[] xcors = {(int) x, (int) (x + 30), (int) x, (int)(x + 30)};
-    int[] ycors = {(int) y, (int) y, (int) (y + 50), (int) (y + 50)};
-    _shape = new Polygon(xcors, ycors, 4);
-    shapeID = 1;
+    _shape = new Rectangle((int)xcoor, (int)ycoor, 30, 50);
+  //  shapeID = 1;
   }
   
   // if you want to make a hole, it sets shape of the "path" to an ellipse w/ same height and width
@@ -93,7 +91,7 @@ class Path{
     ycoor = (float) y;
     Ellipse2D.Double circle = new Ellipse2D.Double(x, y, 30, 30);
     _shape = circle;
-    shapeID = 0;
+  //  shapeID = 0;
   }
   
   void mapIcon(float x, float y){
@@ -113,14 +111,14 @@ class Path{
     stroke(0);
     fill(245, 0, 155); //sets it bright pink so it will get noticed
     //checks if it's a door or hole
-    if( shapeID == 1 ){ //_shape instanceof Polygon){
+    if( _shape instanceof Rectangle){ //_shape instanceof Polygon){
       rect(xcoor, ycoor, 30, 50);
     }
-    else if( shapeID == 0 ){ //_shape instanceof Ellipse2D.Double){
+    else if( _shape instanceof Ellipse2D.Double ){ //_shape instanceof Ellipse2D.Double){
       ellipseMode(CORNER);
       ellipse(xcoor, ycoor, 30, 30);
     }
-    else if( shapeID == 2 ){
+    else if( _shape instanceof Polygon ){
       image( loadImage("map.png"),xcoor,ycoor,48,48);
     }
   }

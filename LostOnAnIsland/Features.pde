@@ -2,6 +2,7 @@ class Features{
   
   ArrayList<PShape> _place;
   int skyColor;
+  int id;
   
   Features(){
     _place = new ArrayList<PShape>();

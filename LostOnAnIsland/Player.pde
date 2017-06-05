@@ -23,7 +23,7 @@ class Player{
  }
  
  int getX(){
-   System.out.println("X: " + xcoor);
+
    return (int) xcoor;
  }
  
@@ -32,7 +32,7 @@ class Player{
  }
  
  int getY(){
-   System.out.println("Y: " + ycoor);
+
    return (int) ycoor;
  }
  //returns player sprite
