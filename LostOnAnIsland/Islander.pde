@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 
 class Islander{
   
@@ -9,6 +10,10 @@ class Islander{
   int y; // y-cor of position
   int iWidth; // new width of islander
   int iHeight; // new height of islander
+  String question = "";
+  String good, bad;
+  boolean questAccepted = false;
+  boolean givingOptions = false;
   
   LLStack<String> _dialogue; // what to say when they're clicked on
   String curr; // next thing to say
@@ -49,21 +54,32 @@ class Islander{
   void display(){
     image(_image,x,y,iWidth,iHeight);
     if( talking ){ interact(); }
-    if( _dialogue == null ){ 
-      while( _tools != null ){ giveGift(); } 
-      while( _quests != null ){ giveQuest(_quests.pop()); }
+    if( _dialogue == null || _dialogue.isEmpty()){ 
+      while( _tools != null && !(_tools.isEmpty())){ giveGift(); } 
+      if(questAccepted) while( _quests != null && !(_quests.isEmpty())){ 
+          Quest quest = _quests.pop();
+          giveQuest(quest); }
     }
   }
   
   void mousePressed(){
     if( isHotspot() ){ 
-      if( _dialogue.isEmpty() ){ talking = false; }
+      if( _dialogue.isEmpty() ){talking = false; }
       else{ talking = true; 
             curr = _dialogue.pop();
-            }
+            if(curr.equals(question)) {questioning = true; giveOptions();}
+           }
     }
   }
   
+  int keyPressed(){
+    givingOptions = false;
+    questAccepted = (key == 'X' || key == 'x');
+    if(questAccepted) return 1;
+    else return 0;
+  }
+  
+  //Precondition: cannot contain a question mark
   public void addSpeech(String s){ // add a new thing to say to _dialogue
     _dialogue.push(s);
     curr = _dialogue.peek();
@@ -94,9 +110,31 @@ class Islander{
   
   void giveQuest(Quest q){
     p.addQuest(q);
-    _messages.push("NEW QUEST ALERT: \n" + q.getMessage() + q.getStatus());
+    while(!(_messages.isEmpty())) {System.out.println(_messages.pop());}
+    _messages.push("NEW QUEST ALERT: \n" + q.getMessage() + "  " + q.getStatus());
+     messaging = true;
+     currMessage = _messages.pop();
+     System.out.println(currMessage);
+   //questAccepted = false;
+  }
+  
+  void setQuestion(String s){
+    question = s;
+    _dialogue.pushLast(s);
+    curr = _dialogue.peek();
+  }
+  
+  void giveOptions(){
+    givingOptions = true;
+    _messages.push("Press X: " + good + "\n \n Y: " + bad);
     messaging = true;
     currMessage = _messages.pop();
+   
+  }
+  
+  void setOptions(String _good, String _bad){
+    good = _good;
+    bad = _bad;
   }
   
   void addQuest(Quest q){

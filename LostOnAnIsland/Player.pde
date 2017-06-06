@@ -79,6 +79,11 @@ class Player{
    return reputation;
  }
  
+  double incReputation(double incBy){
+   reputation -= incBy;
+   return reputation;
+ }
+ 
  void addQuest(Quest quest){
    quests.push(quest);
  }
@@ -89,21 +94,25 @@ class Player{
      if (this.place == q.getReq())
        quests.pop();
    }
+   else if(q.getReq() instanceof Tool){
+     Tool t = (Tool) q.getReq();
+     if(hasTool(t)) {
+       quests.pop();
+     }
+   }
    // add other cases for different kinds of quest  
+ }
+ 
+ void questAlert(Quest q){
+    _messages.push("NEW QUEST ALERT: \n" + q.getMessage() + "  " + q.getStatus());
+    messaging = true;
+    currMessage = _messages.pop();
  }
  
  Quest peekQuest(){
    return quests.peek();
  }
  
- /*void advanceStory(int pathChosen){
-   if(pathChosen < 0){
-     current_node = current_node.getLeft();
-   }
-   else if(pathChosen > 0){
-     current_node = current_node.getRight();
-   }
- }*/
  
  //user can move around the player instead of just pointing and clicking
  //problem is, user must press a new key in order to stop its movement

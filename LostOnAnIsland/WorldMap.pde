@@ -64,6 +64,10 @@ class WorldMap{
     
     _MAP = new Tool("Bottle",300,500,"messageInABottle.png",13,33);
     l0.addTool(_MAP);
+    
+     leader.addQuest(new Quest(4, "Get the bottle", _MAP));
+     leader.setQuestion("Can you get me a bottle?");
+     leader.setOptions("Yea, sure!", "Haha nope.");
     //System.out.println(current.getDescription());
   }
   
@@ -123,12 +127,13 @@ class WorldMap{
   }
 
   public void setupl0(){
-    leader = new Islander(500,450,"Leader", "PrincessPeach_fwd.png",40,76, 0);
+    leader = new Islander(500,450,"Princess", "PrincessPeach_fwd.png",40,76, 0);
     leader.addSpeech("BUT, maybe I can help you... \n complete these quests and \n then  come find me. \n I'll get you off of this island.");
     leader.addSpeech("I hope you have another boat. \n Nobody's left this island in years.");
     leader.addSpeech("Were you in a shipwreck \n during the storm \n last night?");
     leader.addSpeech("I've never seen you \n before.");
     leader.addSpeech("That's strange...");
+   
   }
   
   void showScreen(){
@@ -152,5 +157,10 @@ class WorldMap{
   
   void mousePressed(){
     current.mousePressed();
+  }
+  
+  void keyPressed(){
+    current.keyPressed();
+    questioning = !questioning;
   }
 }

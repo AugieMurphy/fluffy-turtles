@@ -67,6 +67,18 @@ class Location implements Requirement{
     for( Islander i: _villagers ){ i.mousePressed(); }
   }
   
+  void keyPressed(){
+    for(Islander i: _villagers) {
+      if(i.keyPressed() == 0) {
+        p.decReputation(20);
+        _messages.push("YOU REFUSED THE ISLANDER! \n YOUR REPUTATION HAS GONE DOWN!");
+        messaging = true;
+        currMessage = _messages.pop();
+      }
+      else if(i.keyPressed() == 1) p.incReputation(20);
+    }
+  }
+  
   void hovering(){
     fill(255);
     for( Islander i: _villagers ){ i.hovering(); }

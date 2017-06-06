@@ -16,6 +16,7 @@ String [] _instructions; // how to play the game, parsed from plaintext file if 
 LLStack<String> _messages; // tutorial/guide for users that allows the game to communicate with them
 String currMessage; 
 boolean messaging;
+boolean questioning;
 
 boolean paused; // when the player is in the inventory or menu screen, this is true
 boolean instructing; // when instructions are being shown, this is true
@@ -27,7 +28,7 @@ PImage inventoryIcon;
 PImage redX;
 
 void setup(){
-  size(600,650);
+  size(600,690);
   p = new Player("Player");
   _map = new WorldMap(p);
   _messages = new LLStack<String>();
@@ -59,9 +60,9 @@ void mousePressed(){
  
   else if( _screen == 2 ){ 
     _map.mousePressed(); // see if map needs to do anything
-    if( _messages.isEmpty() ){ messaging = false; } // stop messaging if there aren't any messages left
+    if( _messages.isEmpty() ){ if(!questioning) messaging = false; } // stop messaging if there aren't any messages left
     else{ messaging = true; currMessage = _messages.pop(); } // if there's more messages and they click again, show another one
-    if( !paused && !messaging){ // if we don't need to tell the user something
+    if( !paused && !messaging && !questioning){ // if we don't need to tell the user something
         if( isInventory() ){ inventoryScreen(); } // they see what tools they have if they click on the inventory
         else if( isMenu() ){ menuScreen(); } // if they click the menu button, pop-up menu appears
       }
@@ -84,7 +85,11 @@ void mousePressed(){
 }
 
 void keyPressed(){
-  if(_screen == 2) p.move(true); // move the player if the user is pressing the arrow or w,a,s,d keys
+  if(_screen == 2) 
+    {if(!questioning) p.move(true); // move the player if the user is pressing the arrow or w,a,s,d keys
+    else {_map.keyPressed();}
+    }
+  
 }
 
 // USER INPUT HELPERS
@@ -136,7 +141,14 @@ void gameScreen(){
   rect(20, 550, 560, 45); //makes the background box for the quest text
   fill(0, 0, 0);
   textAlign(CENTER); // text is displayed now
-  text("QUEST: " + p.peekQuest().getMessage(), 250, 580);
+  fill(#FF0000);
+  PFont font = loadFont("LucidaGrande-Bold-16.vlw");
+  textFont(font, 16);
+  text("QUEST: ", 200, 580);
+  fill(0);
+  font = loadFont("LucidaSans-16.vlw");
+  textFont(font, 12);
+  text(p.peekQuest().getMessage(), 270, 580);
   text((_map.getLocation()).getName() + ": " +_map.getLocation().getDescription(), 300, 40);
   _map.showScreen(); //location/setting is displayed now
   
@@ -207,11 +219,24 @@ public void addMessage(String s){
 }
 
 
+
 public void displayMessage(){
+  if(!(questioning)){
   stroke(0);
   fill(#D403FF);
-  rect(100,603,400,50);
+  rect(100,601,400,70);
   textAlign(CENTER);
   fill(255);
-  text(currMessage,300,620);
+  text(currMessage,300,630);
+  }
+  else{
+    stroke(0);
+    fill(#00FFAC);
+    rect(100,601,400,20);
+    fill(#FF0040);
+    rect(100,633,400,20);
+    textAlign(CENTER);
+    fill(0);
+    text(currMessage,300,615);
+  }
 }

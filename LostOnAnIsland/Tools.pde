@@ -1,4 +1,4 @@
-class Tool{
+class Tool implements Requirement{ 
   
   String _name;
   PImage _tool;
