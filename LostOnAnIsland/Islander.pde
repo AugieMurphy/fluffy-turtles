@@ -69,8 +69,12 @@ class Islander{
             curr = _dialogue.pop();
             if(curr.equals(question)) {questioning = true; giveOptions();}
            }
+           if( (ID == 0) && (p.quests._stackSize == 1) ){
+             _screen++;
+           }
     }
   }
+
   
   int keyPressed(){
     givingOptions = false;

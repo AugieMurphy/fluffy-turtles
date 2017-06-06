@@ -57,7 +57,7 @@ class WorldMap{
     l3.addExit(new Path(l1, 200, 360, "hole", 66, 120, 22));
     
 
-    p.addQuest((new Quest(0, "No quests left")));
+    p.addQuest((new Quest(0, "No quests left, go find Peach!")));
     p.addQuest((new Quest(2, "Get to Square", l3)));
     p.addQuest((new Quest(1, "Get to Village", l2)));
     //System.out.println(current.getDescription());
@@ -144,9 +144,8 @@ class WorldMap{
     else{map.display(); map.showExits();
       fill(255);
       textAlign(CENTER);
-      text("Exit\nMap", 315, 325);}
-    
-    
+      text("Exit\nMap", 315, 325);
+    }
     p.sideBar();
     hovering();
   }
