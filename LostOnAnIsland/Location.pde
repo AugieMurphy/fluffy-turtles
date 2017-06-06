@@ -14,6 +14,7 @@ class Location implements Requirement{
   float yborderI;
   float xborderII;
   float yborderII;
+  Polygon _path;
   
   Location(){
     _name = "";
@@ -77,6 +78,14 @@ class Location implements Requirement{
       }
       else if(i.keyPressed() == 1) p.incReputation(20);
     }
+  }
+  
+  void addPoint(int x, int y){
+    _path.addPoint(x,y);
+  }
+  
+  void isPath(int x, int y ){
+    _path.contains(x,y);
   }
   
   void hovering(){
