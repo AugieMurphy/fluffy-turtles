@@ -42,3 +42,16 @@ Augie: Sent Max Local copies of Location, LostOnIsland, WorldMap, and path to co
 
 Max: pushed Augies work. Created Quest and the Stacks with it. Quests will be "hard-coded" with different ID's which change the completion requirements and the quest text. As one quest is completed, the next one will be poped from the stack and become the current quest - once the stack is fully depleted and the current quest becomes null, the game will end. 
 
+
+6/4/17
+
+Max: Began work on story, It is still tentative and may change. Worked on a new quest implemenation for streamlining.
+
+6/5/17
+
+max: Quest implementation nearly completed, but basics all should work. In the quest constructor,  an ID is given, and the ID changes what the quest itself is. Each quest (based on ID) also has a different requirement, as shown in the completionReq() method.
+
+
+6/6/17
+
+Max: all quest types created and fully implemented. Quest types are reach location, talk to person, or aquire item. All of these are based on a check of ID.
