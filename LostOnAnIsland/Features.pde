@@ -1,45 +1,35 @@
-class Features{
+class Feature{
   
-  ArrayList<PShape> _place;
+  PShape _shape;
   int skyColor;
   int id;
   
-  Features(){
-    _place = new ArrayList<PShape>();
+  Feature(){
+    _shape = createShape();
     skyColor = -1;
   }
   
-  void skyColor(int i){
-    skyColor = i;
+  Feature(PShape newShape, int fillColor, int strokeColor, int strokeWidth){
+    newShape.setFill(fillColor);
+    newShape.setStroke(strokeColor);
+    newShape.setStrokeWeight(strokeWidth);
+    _shape = newShape;
   }
   
-  public void add(PShape p, int fillColor, int strokeColor, int strokeWidth){
-    p.setFill(fillColor);
-    p.setStroke(strokeColor);
-    p.setStrokeWeight(strokeWidth);
-    _place.add(p);
+  Feature(PShape newShape, int fillColor, int transparency, int strokeColor, int strokeWidth){
+    newShape.setStroke(strokeColor);
+    newShape.setStrokeWeight(strokeWidth);
+    newShape.setFill(fillColor, transparency);
+    _shape = newShape;
   }
   
-  public void add(PShape p, int fillColor, int transparency, int strokeColor, int strokeWidth){
-    p.setStroke(strokeColor);
-    p.setStrokeWeight(strokeWidth);
-    p.setFill(fillColor, transparency);
-    _place.add(p);
+  Feature(PShape newShape, int fillColor, int transparency){
+    newShape.setFill(fillColor, transparency);
+    _shape = newShape;
   }
   
-  public void add(PShape p, int fillColor, int transparency){
-    p.setFill(fillColor, transparency);
-    _place.add(p);
-  }
-  
-  public void display(){
-    if( skyColor == -1 ){ 
-      background(0xffE5EFFF); 
-    }
-    else{ background(skyColor); }
-    for( PShape p: _place ){
-      shape(p);
-    }
+  public void draw(){
+    shape(_shape);
   }
   
   

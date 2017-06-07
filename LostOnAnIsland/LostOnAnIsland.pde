@@ -21,6 +21,7 @@ boolean questioning;
 boolean paused; // when the player is in the inventory or menu screen, this is true
 boolean instructing; // when instructions are being shown, this is true
 boolean menuOpen;
+boolean selecting;
 
 PImage menuIcon;
 PImage inventoryIcon;
@@ -36,6 +37,8 @@ void setup(){
   currMessage = _messages.peek();
   messaging = false;
   paused = false;
+  questioning = false;
+  selecting = false;
   _instructions = loadStrings("Instructions.txt");
   menuIcon = loadImage("menuIcon.png");
   inventoryIcon = loadImage("bag2.png");
@@ -75,7 +78,7 @@ void mousePressed(){
        else if( menuOpen ){ 
          if( menuButton1() ){ readInstructions(); } // if button one is clicked, show the instructions
          else if( menuButton2() && menuOpen ){ _screen++; menuOpen = !menuOpen; } // if button two is clicked, end the game
-         //else if( menuButton3() && menuOpen ){ _screen = 0; menuOpen = !menuOpen; p = new Player("newPlayer"); _map = new WorldMap(p); } 
+         else if( menuButton3() && menuOpen ){ _screen = 1; setup();} 
        }
     }
    }
@@ -85,11 +88,10 @@ void mousePressed(){
 }
 
 void keyPressed(){
-  if(_screen == 2) 
-    {if(!questioning) p.move(true); // move the player if the user is pressing the arrow or w,a,s,d keys
-    else {_map.keyPressed();}
-    }
-  
+  if(_screen == 2){
+    p.keyPressed(); // move the player if the user is pressing the arrow or w,a,s,d keys
+    _map.keyPressed();
+  }
 }
 
 // USER INPUT HELPERS
@@ -148,15 +150,17 @@ void gameScreen(){
   fill(0);
   font = loadFont("LucidaSans-16.vlw");
   textFont(font, 12);
-  text(p.peekQuest().getMessage(), 270, 580);
+  if( !p._quests.isEmpty() || !(p._quests == null) ){
+    text(p.peekQuest().getMessage(), 270, 580);
+  }
   text((_map.getLocation()).getName() + ": " +_map.getLocation().getDescription(), 300, 40);
-  _map.showScreen(); //location/setting is displayed now
+  _map.draw(); //location/setting is displayed now
   
   fill(255);
   image(inventoryIcon,450,70,45,65);
   image(menuIcon,20,15,50,45);
   
-  p.move(false); //character is now displayed
+  //p.move(false); //character is now displayed
   
   if( messaging ){ displayMessage(); }
 }
@@ -213,21 +217,20 @@ void readInstructions(){
   image(redX,495,95,10,10);
 }
 /*****/
- //<>//
+
+/*** HELPER METHODS FOR MESSAGING ***/ //<>//
 public void addMessage(String s){
   _messages.push(s);
 }
 
-
-
 public void displayMessage(){
-  if(!(questioning)){
-  stroke(0);
-  fill(#D403FF);
-  rect(100,601,400,70);
-  textAlign(CENTER);
-  fill(255);
-  text(currMessage,300,630);
+  if( !(questioning) ){
+    stroke(0);
+    fill(#D403FF);
+    rect(100,601,400,70);
+    textAlign(CENTER);
+    fill(255);
+    text(currMessage,300,630);
   }
   else{
     stroke(0);
@@ -240,3 +243,4 @@ public void displayMessage(){
     text(currMessage,300,615);
   }
 }
+/*** END OF HELPER METHODS FOR MESSAGING ***/

@@ -5,7 +5,6 @@ class WorldMap{
   LLStack<Quest> QuestStack; //might not need this
   boolean gameOver = false;
   Player p; //mainly to keep track of player's place && update location
-  Islander leader;
   Tool _MAP;
   Location map;
   boolean inMap = false;
@@ -23,7 +22,13 @@ class WorldMap{
     Location l3 = new Location("Main Square", "This is the Main Square of the village...",3);
     
     current = l0;
-    setupl0();
+    
+    Islander leader = new Islander(450,500,"Princess Peach", "PrincessPeach.png", 0, 4,4);
+    leader.addSpeech("BUT, maybe I can help you... \n complete these quests and \n then  come find me. \n I'll get you off of this island.");
+    leader.addSpeech("I hope you have another boat. \n Nobody's left this island in years.");
+    leader.addSpeech("Were you in a shipwreck \n during the storm \n last night?");
+    leader.addSpeech("I've never seen you \n before.");
+    leader.addSpeech("That's strange...");
     
     map.setImage("emptyMap.jpg");
     l0.setImage("beach2.png");
@@ -126,27 +131,18 @@ class WorldMap{
     }
   }
 
-  public void setupl0(){
-    leader = new Islander(500,450,"Princess", "PrincessPeach_fwd.png",40,76, 0);
-    leader.addSpeech("BUT, maybe I can help you... \n complete these quests and \n then  come find me. \n I'll get you off of this island.");
-    leader.addSpeech("I hope you have another boat. \n Nobody's left this island in years.");
-    leader.addSpeech("Were you in a shipwreck \n during the storm \n last night?");
-    leader.addSpeech("I've never seen you \n before.");
-    leader.addSpeech("That's strange...");
-   
-  }
   
-  void showScreen(){
+  void draw(){
     locateTools();
     updateLocation();
     p.popQuest();
-    if(!inMap) {current.display(); current.showExits(); current.displayTools();}
-    else{map.display(); map.showExits();
+    if(!inMap) { current.draw(); }
+    else{ map.draw(); //map.showExits();
       fill(255);
       textAlign(CENTER);
       text("Exit\nMap", 315, 325);
     }
-    p.sideBar();
+    p.draw();
     hovering();
   }
   
@@ -156,10 +152,11 @@ class WorldMap{
   
   void mousePressed(){
     current.mousePressed();
+    p.mousePressed();
   }
   
   void keyPressed(){
     current.keyPressed();
-    questioning = !questioning;
+    //questioning = !questioning;
   }
 }

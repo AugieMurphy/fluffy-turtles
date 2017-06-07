@@ -48,7 +48,7 @@ class Quest{
      return message;
    }
    
-   boolean completionReq(Location Loc, Islander Isl, Features item){
+   boolean completionReq(Location Loc, Islander Isl, Feature item){
      if (ID == 1){
        if(Loc.ID == 1){
          return true;}}
