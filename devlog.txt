@@ -17,41 +17,58 @@ Arpita and Max: worked on solidifying the proposal to have more term 2 concepts.
 All: More work on solidification of our idea.
 
 05/24/17
-All: final Idea completely soldified. Game will now become more RPG style with branching pathways and quests. UML, Flowchart, and final proposal created as group effort.
+All: final Idea completely solidified. Game will now become more RPG style with branching pathways and quests. UML, Flowchart, and final proposal created as group effort.
 
 05/25/17 
 
-General: CYOA is currently being used as a dummy folder for code that is not completed or ready for implenation. Once it is ready for testing, it will be moved to island adventure.
+General: CYOA is currently being used as a dummy folder for code that is not completed or ready for implentation. Once it is ready for testing, it will be moved to island adventure.
+Augie: Created location, world map, and driver that were more focused on the new task.
 
+05/26/17
 
- 05/26/17
+Augie: Created a system of linked locations (linked by paths or exits), and linked three dummies together to test for functionality.
 
 Max: Almost completed a non-binary tree system To use for the map of the world.
 
 Arpita: Worked on player and the driver file. 
 
-Augie: Work on Location as well as restructured files to its final system.
 
 05/28/17
 
 Something odd happened where a large amount of the files got erased, so almost all work except for some local copies of very new things remain, as some of us were a few commits behind in our local copies.
 
-As such, we have decided to restructure much of our code and how we are working on it. This fresh start will help immensely as we were very disorgonized and somewhat out of phase before.
+As such, we have decided to restructure much of our code and how we are working on it. This fresh start will help immensely as we were very disorganized and somewhat out of phase before.
 
 Augie: Sent Max Local copies of Location, LostOnIsland, WorldMap, and path to commit as I currently cannot. WorldMap and Path are essentially a linked list system as a map which will allow for traversal instead of a tree.
 
-Max: pushed Augies work. Created Quest and the Stacks with it. Quests will be "hard-coded" with different ID's which change the completion requirements and the quest text. As one quest is completed, the next one will be poped from the stack and become the current quest - once the stack is fully depleted and the current quest becomes null, the game will end. 
+Max: pushed Augie’s work. Created Quest and the Stacks with it. Quests will be "hard-coded" with different ID's which change the completion requirements and the quest text. As one quest is completed, the next one will be popped from the stack and become the current quest - once the stack is fully depleted and the current quest becomes null, the game will end. 
+
+
+6/2/17
+
+Augie: Created an islander class for characters other than the main player. Gave them a stack of dialogue that can be popped. Gave location an ArrayList of tools and islanders. Created tool and Inventory classes. Gave player an inventory (made of tools) and rudimentary display of all of these features.
+
+6/03/17
+
+Augie: Gave Islanders a PImage to display. Created pop-up messages (to communicate with the user). Created methods for a character to pick up a tool.
 
 
 6/4/17
 
-Max: Began work on story, It is still tentative and may change. Worked on a new quest implemenation for streamlining.
+Augie: Created a new inventory that doesn’t have a limited number of tools by adding an icon with a “storage area”. Clicking on it leads to an expanded inventory. Also created a pop-up menu that’s accessible by clicking on an icon and a map that’s accessible through a map icon in the top left corner. Implemented methods that will allow characters to exchange tools.
+
+Max: Began work on story, It is still tentative and may change. Worked on a new quest implementation for streamlining.
 
 6/5/17
+
+Augie: Created a Sprite superClass that is extended by player, islander, and pirate. Implemented sprite sheets (for character movement). Also, created an events class that can display a series of panels to lead the story along.
 
 max: Quest implementation nearly completed, but basics all should work. In the quest constructor,  an ID is given, and the ID changes what the quest itself is. Each quest (based on ID) also has a different requirement, as shown in the completionReq() method.
 
 
 6/6/17
+Augie: integrated sprite movement into code.
 
-Max: all quest types created and fully implemented. Quest types are reach location, talk to person, or aquire item. All of these are based on a check of ID.
+Augie and Arpita: made restart work
+
+Max: all quest types created and fully implemented. Quest types are reach location, talk to person, or acquire item. All of these are based on a check of ID.
