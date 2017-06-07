@@ -117,6 +117,18 @@ class WorldMap{
     map._exits.get(0).setDestination(current);
     p.setLocation(current);
   }
+  // updated what islander the player is currently talking too
+  void updateIslanderTalkingToo(){
+    for(Islander each: current._villagers){
+      if(each.talking){
+        p.talkingtoo = each;
+        break;
+      }
+    }
+    p.talkingtoo = null;
+  }
+      
+    
   
   void locateTools(){
     int i = -1;

@@ -15,6 +15,12 @@ class Inventory{
   void receive(Tool t){
     _inventory.add(t);
   }
+  boolean hasToolID( int id ){
+   for( int i = 0; i < _inventory.size(); i++ ){
+     if( _inventory.get(i).ID == id){ return true; }
+   }
+   return false;
+ }
   
   Tool select(){
     return null;

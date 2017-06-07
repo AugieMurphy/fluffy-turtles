@@ -4,6 +4,7 @@ class Player extends Sprite{
   Inventory _inventory;
   double reputation;
   Location place;
+  Islander talkingtoo;
   
  Player(String n){
    super(400,350, n, "placeHolder.png", -1, 3, 4);
@@ -73,17 +74,8 @@ class Player extends Sprite{
  void popQuest(){
    Quest q = _quests.peek();
    if( !_quests.isEmpty() ){
-     if (q.getReq() instanceof Location) {
-       if (this.place == q.getReq())
-         _quests.pop();
-     }
-     else if(q.getReq() instanceof Tool){
-       Tool t = (Tool) q.getReq();
-       if(hasTool(t)) {
-         _quests.pop();
-       }
-     }
-     // add other cases for different kinds of quest  
+     if (q.completionReq(place, talkingtoo,_inventory)){
+       _quests.pop();}
    }
  }
  
@@ -123,16 +115,16 @@ class Player extends Sprite{
         }
       }
       if(xcoor < place.xborderI+50){// The following code sets to border for how to player can walk.
-        xcoor +=5;
+        xcoor +=10;
       }
       if(xcoor > place.xborderII-40){
-        xcoor -=5;
+        xcoor -=10;
       }
       if(ycoor < place.yborderI){
-        ycoor +=5;
+        ycoor +=10;
       }
       if(ycoor > place.yborderII-50){
-        ycoor -=5;
+        ycoor -=10;
       }
    }
  }

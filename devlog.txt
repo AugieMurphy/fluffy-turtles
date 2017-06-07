@@ -1,4 +1,4 @@
-fluffy-turtles
+﻿fluffy-turtles
 APCS2 pd3
 devlog
 2017/05
@@ -71,4 +71,4 @@ Augie: integrated sprite movement into code.
 
 Augie and Arpita: made restart work
 
-Max: all quest types created and fully implemented. Quest types are reach location, talk to person, or acquire item. All of these are based on a check of ID.
+Max: all quest types created and fully implemented. Quest types are reach location, talk to person, or acquire item. All of these are based on a check of ID. To do this, had to make it so that Player class could have a talkingtoo Islander, which had to in itself be coded within the Worldmap class.

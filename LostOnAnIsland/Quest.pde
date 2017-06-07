@@ -48,15 +48,16 @@ class Quest{
      return message;
    }
    
-   boolean completionReq(Location Loc, Islander Isl, Feature item){
+   boolean completionReq(Location Loc, Islander Isl, Inventory Inv){
      if (ID == 1){
        if(Loc.ID == 1){
          return true;}}
      if (ID == 2){
+       if(Isl != null){
        if(Isl.ID == 5){//Arbitratry Islander ID, will give specefic clue
-         return true;}}
+         return true;}}}
      if (ID == 3){
-       if(item.id == 2){//ID for WP 1
+       if(Inv.hasToolID(5)){//ID for WP 1
          return true;}} 
          
        return false;}
