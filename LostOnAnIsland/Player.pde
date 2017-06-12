@@ -1,6 +1,5 @@
 class Player extends Sprite{
   
-
   Inventory _inventory;
   double reputation;
   Location place;
@@ -71,12 +70,25 @@ class Player extends Sprite{
    _quests.push(quest);
  }
  
- void popQuest(){
+ boolean popquest(){
    Quest q = _quests.peek();
    if( !_quests.isEmpty() ){
-     if (q.completionReq(place, talkingtoo,_inventory)){
-       _quests.pop();}
+     if (q.getReq() instanceof Location){
+       return (place == q.getReq());
+     }
+     else if (q.getReq() instanceof Tool){
+       return hasTool((Tool) q.getReq());
+     }
+     else if(q.getReq() instanceof Islander){
+       return (talkingtoo == q.getReq());
+     }
+     else return false;
    }
+   else return false;
+ }
+ 
+ void popQuest(){
+   if (popquest()) _quests.pop();
  }
  
  void questAlert(Quest q){
